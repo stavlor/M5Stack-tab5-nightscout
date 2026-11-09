@@ -1,0 +1,33 @@
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=374056
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+RTC hardware: detected; stores UTC
+Power indicator: pack=8269mV current=0mA estimate=100 charging=0
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+AAPS body: result=8271 bytes=8271 expected=8271 limit=196608 overflow=0
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+RTC readback UTC: 2026-11-08 17:57:20
+Treatments body: result=18483 bytes=18483 expected=18483 limit=196608 overflow=0
+Treatments cache: pages=2 markers=99 truncated=0
+Live: verified WebSocket connected
+Live: subscribed to entries, devicestatus, treatments
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+AAPS body: result=8271 bytes=8271 expected=8271 limit=196608 overflow=0
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+Treatments body: result=18483 bytes=18483 expected=18483 limit=196608 overflow=0
+Treatments cache: pages=2 markers=99 truncated=0
+Live: create collection mask=1
+Refresh: collection mask=1 live change
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+Live: update collection mask=4
+Live: create collection mask=4
+Refresh: collection mask=4 live change
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+Live: create collection mask=2
+Treatments body: result=18242 bytes=18242 expected=18242 limit=196608 overflow=0
+Treatments cache: pages=2 markers=99 truncated=0
+Refresh: collection mask=2 live change
+AAPS body: result=7687 bytes=7687 expected=7687 limit=196608 overflow=0

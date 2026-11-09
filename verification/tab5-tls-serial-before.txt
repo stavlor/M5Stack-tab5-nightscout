@@ -1,0 +1,1 @@
+Auth HTTP-client=-1 TLS=-32512 verify=0x00000000 SSL - Memory allocation failed; UTC=1793991921 free=301392 largest=155636 roots=118 verifier=anchors

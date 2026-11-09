@@ -1,0 +1,192 @@
+PASS SGV validation, ordering, dedup, future rejection
+PASS ISO offset/fraction and calendar validation
+PASS Stale boundary
+PASS Array IOB fallback and valid zeros
+PASS Zero temp basal and expiry
+PASS Enact timestamp
+PASS Uploader isolation
+PASS Fresh upload cannot revive old metrics
+PASS Empty responses clear cache
+PASS Wrong root rejected
+PASS Malformed JSON rejected
+PASS Production glucose JSON filter
+PASS Production AAPS filter preserves object IOB and predictions
+PASS Decoded body supports multiple chunks and exact bound
+PASS Oversized body is rejected and cannot resume after a retry
+PASS Allocation failure does not masquerade as oversized response
+PASS SMB flag, carbs/bolus coexistence and no correction-bolus guessing
+PASS SMB type; deleted, invalid, future, out-of-window and extended treatments excluded
+PASS Deduplicate treatment IDs without merging distinct events at the same time
+PASS Empty treatment response clears markers
+PASS Non-array treatment response rejected
+PASS Production treatment filter preserves marker fields and removes notes
+PASS Prediction validation keeps five-minute indices and rejects malformed series
+PASS Future forecast source cannot replace current predictions
+PASS Forecast staleness uses calculation time
+PASS Choose newest prediction run without mixing calculation sources
+PASS Missing predictions clear a previously populated forecast
+PASS Forecast length bounded to four hours at five-minute steps
+PASS Bounded markers keep newest events even for unordered input
+PASS Paged treatment merge retains earlier pages and deduplicates overlap
+PASS A full intermediate API page is not mislabeled as truncated history
+PASS Trend directions map to horizontal and vertical arrows
+PASS Double and diagonal trends retain their meaning
+PASS Missing trends show unknown instead of an invented direction
+PASS Repeated SMB uploads with one pump identity produce one marker
+PASS SMB duplicate fallback matches exact milliseconds and dose across timestamp formats
+PASS Distinct SMB milliseconds or amounts are not collapsed
+PASS SMB pump identifiers are scoped to pump type and serial
+PASS First fresh high reading requests one chirp
+PASS Continuing highs do not repeat even when glucose changes
+PASS Returning to range re-arms the next high episode
+PASS First fresh low reading requests one chirp
+PASS Low reminder fires at 15 minutes, not before
+PASS Successful low reminder restarts its 15-minute interval
+PASS A new low after an in-range reading chirps immediately
+PASS Stale data and reconnects do not re-arm an ongoing high
+PASS A direct high-to-low transition chirps for the low
+PASS Stale low reminders are silent and resume only with fresh low data
+PASS 70 and 180 are in range; missing and invalid glucose never chirp
+PASS A failed or unacknowledged tone does not consume the first alert
+PASS Low repeat timing survives the millis counter wrap
+PASS Muted alerts suppress both low and high chirps
+PASS Re-enabling evaluates current fresh glucose once
+PASS Setting an already-enabled toggle does not re-arm highs
+PASS Mute blocks low reminders; re-enable starts a fresh low reminder interval
+PASS VBUS-present alone does not prove incoming USB power
+PASS Usable USB supplying current is shown even without a charging flag
+PASS Unplugged USB ADC values override lingering input flags
+PASS Backfed USB voltage with no incoming current is not USB power
+PASS Usable separate ACIN input is classified as external power
+PASS Invalid current data cannot assert USB power
+PASS Input selection follows measured supply instead of unused USB voltage
+PASS Production v3 response filter and wrapped glucose result
+PASS Invalid v3 result cannot overwrite a good glucose snapshot
+PASS Non-success v3 status is rejected
+PASS V3 status must be numeric
+PASS Successful empty v3 collection clears old data
+PASS Legacy arrays remain explicit v1-only responses
+PASS V3 canonical device date and predictions survive envelope filtering
+PASS V3 public identifiers deduplicate treatments and tombstones are excluded
+PASS Deleted glucose documents never become current readings
+PASS Deleted device status cannot revive loop or pump values
+PASS Authorization response yields bounded JWT and expiration
+PASS JWT renews before expiry and when missing
+PASS Expired JWT is not accepted
+PASS JWT without expiration fails closed
+PASS JWT header-injection characters are rejected
+PASS Empty JWT segments are rejected
+PASS Isolated SMB labels remain separate and bounded
+PASS Two close SMBs use separate label rows before combining
+PASS Crowded SMB labels combine adjacent amounts while preserving count and timestamp span
+PASS Edge labels stay inside history pane
+PASS Full treatment capacity fits without overlapping labels or losing dose totals
+PASS New snapshot clears prior SMB label groups
+PASS Fresh sources do not produce stale alerts
+PASS Stale alert remains pending until played
+PASS Stale glucose sounds once per episode
+PASS AAPS stale episode remains independent of glucose
+PASS Both stale episodes are acknowledged
+PASS Fresh recovery rearms only recovered source
+PASS Mute suppresses stale sounds and enabling rearms them
+PASS Acknowledging an obsolete alert cannot consume a later episode
+PASS Stale audio threshold is strictly more than ten minutes
+PASS Empty graph has neutral target-range bounds
+PASS Flat glucose has padded minimum span without 250 ceiling
+PASS Visible glucose extrema define graph scale
+PASS Wide glucose excursions remain within padded scale
+PASS Invalid glucose cannot distort graph scale
+PASS Target shading fills an entirely in-range scale
+PASS Target shading clips to visible intersection
+PASS Out-of-range scales have no misleading green shading
+PASS Quick settings expose only supported graph windows
+PASS Invalid stored graph preferences use safe defaults
+PASS Wi-Fi setup rejects empty network names
+PASS Wi-Fi setup supports explicit open networks
+PASS Wi-Fi setup rejects short WPA passwords
+PASS Wi-Fi setup accepts bounded WPA credentials
+PASS Corrupt unterminated saved Wi-Fi credentials are rejected
+PASS Wi-Fi setup rejects control characters in credentials
+PASS Runtime profile accepts a bounded default configuration
+PASS Unconfigured Nightscout does not block Wi-Fi recovery or menu settings
+PASS Stored profile version mismatch is rejected
+PASS Unterminated stored secrets are rejected
+PASS Runtime Nightscout URL keeps HTTPS origin and optional path restrictions
+PASS Blank token preserves saved secret while nonsecret fields change
+PASS Changing server cannot silently forward the previous saved token
+PASS Changing server accepts an explicitly entered replacement token
+PASS Boolean cannot become a polling interval
+PASS Runtime polling minimum is enforced
+PASS Runtime history supports only menu timeframes
+PASS Alert thresholds must remain ordered
+PASS Existing Wi-Fi password is preserved when omitted or blank
+PASS New open Wi-Fi must be explicitly selected
+PASS Explicit open network is supported without revealing another password
+PASS Conflicting open-network password is rejected
+PASS Duplicate saved Wi-Fi names cannot hide fallback entries
+PASS Portal cannot accidentally erase all saved networks
+PASS Network priority changes preserve each network's own secret
+PASS Only Nightscout identity changes invalidate cached connection data
+PASS Public settings response omits all token and Wi-Fi password values
+PASS Recovery hotspot promotes a tested network while bounding backups to five
+PASS Promoting an existing network never creates duplicates
+PASS String booleans cannot change API mode
+PASS Display brightness is bounded to device range
+PASS Zero freshness limits are rejected
+PASS Embedded NUL cannot truncate portal tokens or Wi-Fi passwords
+PASS Rejected or successful patch parsing never mutates the active source profile
+PASS LAN portal starts without an authenticated session
+PASS Five incorrect portal codes enforce a one-minute cooldown
+PASS Only a matching session cookie authorizes portal access
+PASS Active authenticated requests renew the inactivity timer
+PASS Idle portal sessions expire at fifteen minutes
+PASS Portal session timers handle monotonic counter wrap
+PASS Disabling or locking the portal revokes its session
+PASS Portal alert thresholds affect actual glucose alerts consistently
+PASS TLS diagnostics distinguish untrusted chain
+PASS TLS hostname failure remains explicit with multiple flags
+PASS TLS certificate dates are distinguished from trust errors
+PASS TLS algorithm failures are not mislabeled as missing roots
+PASS TLS diagnostics identify missing peer certificates
+PASS Unavailable TLS verification state is not interpreted as all failures
+PASS Exact root subject and key can anchor a cross-signed presentation
+PASS Trusted root identity cannot waive certificate date failures
+PASS Trusted root identity cannot waive hostname mismatch
+PASS Root anchoring preserves key-usage constraints
+PASS Weak self/cross signature exception applies only to an exact anchor
+PASS Unknown root identity still requires verified issuer signature
+PASS Trust requires exact nonempty public-key bytes, not subject name alone
+PASS Tab5 accepts a 24 hour runtime profile
+PASS Graph time mapping spans native landscape width
+PASS Graph clipping stays within bounds
+PASS Touch range selection wraps safely
+PASS Disconnected or invalid RSSI never shows strong Wi-Fi
+PASS Wi-Fi strong/good thresholds match Core2
+PASS Wi-Fi fair/weak boundary matches Core2
+PASS Header clock uses clear padded local time and date
+PASS Unset RTC does not display a misleading epoch date
+PASS Only SMB doses strictly above 0.5U receive floating labels
+PASS Crowded floating dose labels retain all eligible counts and total units
+PASS 12-hour display formats midnight correctly
+PASS 12-hour display formats noon correctly
+PASS 12-hour display distinguishes evening PM
+PASS Live bursts coalesce without postponing the first deadline
+PASS Events arriving after a fetch starts remain pending
+PASS Live debounce handles millis rollover
+PASS Fragmented Socket.IO text survives an interleaved WebSocket ping
+PASS Masked server frames are rejected
+PASS Orphan continuation frames are rejected
+PASS Fragmented control frames are rejected
+PASS Oversized live messages fail closed rather than exhausting memory
+PASS Extended-length frames assemble across arbitrary input chunks
+PASS Empty text frames terminate without consuming the next frame
+PASS Unnegotiated WebSocket compression is rejected
+PASS Binary frames cannot be mistaken for live JSON
+PASS New text cannot overwrite an unfinished fragmented message
+PASS Non-minimal extended frame lengths are rejected
+PASS Oversized control frames are rejected before allocating payload
+PASS 64-bit frame lengths obey the same message memory limit
+PASS Close callback failure propagates to reconnect recovery
+PASS Live routing ignores clinical payload and accepts the Socket.IO array suffix
+PASS Only monitored collections route live refreshes
+RESULT: 191 passed, 0 failed

@@ -1,0 +1,8 @@
+test_all_recordings_and_originals_match_manifest (__main__.AudioAssets.test_all_recordings_and_originals_match_manifest) ... ok
+test_every_clip_contains_non_silent_pcm (__main__.AudioAssets.test_every_clip_contains_non_silent_pcm) ... ok
+test_pack_has_the_six_variants_and_eight_tones (__main__.AudioAssets.test_pack_has_the_six_variants_and_eight_tones) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.061s
+
+OK

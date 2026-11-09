@@ -1,0 +1,2 @@
+All 118 embedded public keys match the source certificates using Node/OpenSSL.
+Cross-signed Google root has an exact trusted root key while its legacy parent is absent.

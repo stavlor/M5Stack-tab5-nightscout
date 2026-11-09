@@ -1,0 +1,4 @@
+Runtime CA bundle: byte-for-byte identical to official ESP-IDF v5.5.2 gen_crt_bundle.py output.
+Roots: 118
+Bytes: 55222
+SHA256: 9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578

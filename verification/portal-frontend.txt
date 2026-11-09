@@ -1,0 +1,1 @@
+Portal frontend checks passed: login, secret preservation, priority editing, new network payload, CSRF forwarding, stale-save errors and lock cleanup.

@@ -1,0 +1,201 @@
+Processing tab5 (platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.37/platform-espressif32.zip; board: esp32-p4-evboard; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-p4-evboard.html
+PLATFORM: Espressif 32 (55.3.37) > Espressif ESP32-P4 Function EV Board (ES pre rev.300)
+HARDWARE: ESP32P4 360MHz, 500KB RAM, 16MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.7 
+ - framework-arduinoespressif32-libs @ 5.5.0+sha.87912cd291 
+ - tool-esptoolpy @ 5.1.2 
+ - toolchain-riscv32-esp @ 14.2.0+20251107
+*** Applied include path shortening for 288 framework paths ***
+*** Path length reduced from 53681 to ~11795 characters ***
+*** Estimated savings: 41472 characters ***
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- M5Unified @ 0.2.28
+|-- M5GFX @ 0.2.35
+|-- ArduinoJson @ 6.21.5
+|-- DNSServer @ 3.3.7
+|-- HTTPClient @ 3.3.7
+|-- Preferences @ 3.3.7
+|-- WebServer @ 3.3.7
+|-- WiFi @ 3.3.7
+|-- NetworkClientSecure @ 3.3.7
+Building in release mode
+Converting .pio\build\tab5\tab5_crt_bundle.bin.txt.o
+Compiling .pio\build\tab5\libd70\SPI\SPI.cpp.o
+Compiling .pio\build\tab5\lib6c2\Wire\Wire.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\M5GFX.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\Fonts\IPA\lgfx_font_japan.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\Fonts\efont\lgfx_efont_cn.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\Fonts\efont\lgfx_efont_ja.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\Fonts\efont\lgfx_efont_kr.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\Fonts\efont\lgfx_efont_tw.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\utility\lgfx_miniz.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\utility\lgfx_pngle.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\utility\lgfx_qoi.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\utility\lgfx_qrcode.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\utility\lgfx_tjpgd.c.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\LGFXBase.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\lgfx_fonts.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\lgfx_v1.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\lgfx_v1_panel.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\lgfx_v1_platforms.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\lgfx_v1_touch.cpp.o
+Compiling .pio\build\tab5\liba44\M5GFX@0.2.35\lgfx\v1\panel\Panel_M5HDMI.cpp.o
+Compiling .pio\build\tab5\libd25\M5Unified\M5Unified.cpp.o
+Compiling .pio\build\tab5\lib6a4\AsyncUDP\AsyncUDP.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkClient.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkEvents.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkInterface.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkManager.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkServer.cpp.o
+Compiling .pio\build\tab5\libe9f\Network\NetworkUdp.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\AP.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\STA.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFi.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFiAP.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFiGeneric.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFiMulti.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFiSTA.cpp.o
+Compiling .pio\build\tab5\libb8f\WiFi\WiFiScan.cpp.o
+Compiling .pio\build\tab5\liba49\DNSServer\DNSServer.cpp.o
+Compiling .pio\build\tab5\lib701\NetworkClientSecure\NetworkClientSecure.cpp.o
+Compiling .pio\build\tab5\lib701\NetworkClientSecure\ssl_client.cpp.o
+Compiling .pio\build\tab5\libc93\HTTPClient\HTTPClient.cpp.o
+Compiling .pio\build\tab5\lib0b3\Preferences\Preferences.cpp.o
+Compiling .pio\build\tab5\lib856\FS\FS.cpp.o
+Compiling .pio\build\tab5\lib856\FS\vfs_api.cpp.o
+Compiling .pio\build\tab5\lib858\Hash\PBKDF2_HMACBuilder.cpp.o
+Compiling .pio\build\tab5\lib858\Hash\SHA1Builder.cpp.o
+Compiling .pio\build\tab5\lib858\Hash\SHA2Builder.cpp.o
+Compiling .pio\build\tab5\lib858\Hash\SHA3Builder.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\Parsing.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\WebServer.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\detail\mimetable.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\middleware\AuthenticationMiddleware.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\middleware\CorsMiddleware.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\middleware\LoggingMiddleware.cpp.o
+Compiling .pio\build\tab5\libca8\WebServer\middleware\MiddlewareChain.cpp.o
+Compiling .pio\build\tab5\src\ca_bundle.cpp.o
+Compiling .pio\build\tab5\src\main.cpp.o
+Building .pio\build\tab5\bootloader.bin
+Generating partitions .pio\build\tab5\partitions.bin
+esptool v5.1.2
+Creating ESP32P4 image...
+Merged 2 ELF sections.
+Successfully created ESP32P4 image.
+Compiling .pio\build\tab5\FrameworkArduino\ColorFormat.c.o
+Compiling .pio\build\tab5\FrameworkArduino\Esp.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\FirmwareMSC.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\FunctionalInterrupt.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\HEXBuilder.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\HWCDC.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\HardwareSerial.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\HashBuilder.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\IPAddress.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\MD5Builder.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\MacAddress.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\Print.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\Stream.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\StreamString.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\Tone.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\USB.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\USBCDC.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\USBMSC.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\WMath.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\WString.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\base64.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\cbuf.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\chip-debug-report.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-adc.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-bt.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-cpu.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-dac.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-gpio.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-hosted.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-i2c-ng.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-i2c-slave.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-i2c.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-ledc.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-log-wrapper.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-matrix.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-misc.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-periman.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-psram.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-rgb-led.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-rmt.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-sigmadelta.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-spi.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-time.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-timer.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-tinyusb.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-touch-ng.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-touch.c.o
+Compiling .pio\build\tab5\FrameworkArduino\esp32-hal-uart.c.o
+Compiling .pio\build\tab5\FrameworkArduino\firmware_msc_fat.c.o
+Compiling .pio\build\tab5\FrameworkArduino\freertos_stats.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\idf_openthread_mpool_wrapper.c.o
+Compiling .pio\build\tab5\FrameworkArduino\libb64\cdecode.c.o
+Compiling .pio\build\tab5\FrameworkArduino\libb64\cencode.c.o
+Compiling .pio\build\tab5\FrameworkArduino\main.cpp.o
+Compiling .pio\build\tab5\FrameworkArduino\stdlib_noniso.c.o
+Compiling .pio\build\tab5\FrameworkArduino\wiring_pulse.c.o
+Compiling .pio\build\tab5\FrameworkArduino\wiring_shift.c.o
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.c:65:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.c: In function '_spiSetClockDivInternal':
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.c:582:32: warning: passing argument 1 of 'spi_ll_set_clk_source' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  582 |       spi_ll_set_clk_source(spi->dev, new_clk_src ? SPI_CLK_SRC_SPLL : SPI_CLK_SRC_XTAL);
+      |                             ~~~^~~~~
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/hal/esp32p4/include/hal/spi_ll.h:179:53: note: expected 'spi_dev_t *' but argument is of type 'volatile spi_dev_t *'
+  179 | static inline void spi_ll_set_clk_source(spi_dev_t *hw, spi_clock_source_t clk_source)
+      |                                          ~~~~~~~~~~~^~
+Archiving .pio\build\tab5\libFrameworkArduino.a
+Linking .pio\build\tab5\firmware.elf
+                            Memory Type Usage Summary                             
+┌─────────────────────┬──────────────┬──────────┬────────────────┬───────────────┐
+│ Memory Type/Section │ Used [bytes] │ Used [%] │ Remain [bytes] │ Total [bytes] │
+├─────────────────────┼──────────────┼──────────┼────────────────┼───────────────┤
+│ Flash               │      1454694 │          │                │               │
+│    .text            │       955182 │          │                │               │
+│    .rodata          │       423436 │          │                │               │
+│    .eh_frame        │        75484 │          │                │               │
+│    .init_array      │          336 │          │                │               │
+│    .appdesc         │          256 │          │                │               │
+│ DIRAM               │       259640 │    45.04 │         316824 │        576464 │
+│    .bss             │        86704 │    15.04 │                │               │
+│    .text            │        82916 │    14.38 │                │               │
+│    .bss             │        70532 │    12.24 │                │               │
+│    .data            │        19488 │     3.38 │                │               │
+│ HP core RAM         │          104 │     1.27 │           8088 │          8192 │
+│    .data            │           60 │     0.73 │                │               │
+│    .text            │           44 │     0.54 │                │               │
+│ LP RAM              │            0 │      0.0 │          32768 │         32768 │
+└─────────────────────┴──────────────┴──────────┴────────────────┴───────────────┘
+Total image size: 1557290 bytes (.bin may be padded larger)
+Note: The reported total sizes may be smaller than those in the technical reference manual due to reserved memory and application configuration. The total flash size available for the application is not included by default, as it cannot be reliably determined due to the presence of other data like the bootloader, partition table, and application partition size. The total external RAM size is not included either, because the amount of RAM connected to the chip is detected at boot and is not known during the build.
+Retrieving maximum program size .pio\build\tab5\firmware.elf
+Checking size .pio\build\tab5\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  17.6% (used 90020 bytes from 512000 bytes)
+Flash: [==        ]  22.6% (used 1481022 bytes from 6553600 bytes)
+Building .pio\build\tab5\firmware.bin with action:
+  $ERASETOOL --chip esp32p4 elf2image --flash-mode ${__get_board_flash_mode(__env__)} --flash-freq ${__get_board_f_image(__env__)} --flash-size 16MB --elf-sha256-offset 0xb0 -o "$TARGET" "$SOURCES"
+Building .pio\build\tab5\firmware.bin
+esptool v5.1.2
+Creating ESP32P4 image...
+Merged 4 ELF sections.
+Successfully created ESP32P4 image.
+========================= [SUCCESS] Took 86.39 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+tab5           SUCCESS   00:01:26.393
+========================= 1 succeeded in 00:01:26.393 =========================

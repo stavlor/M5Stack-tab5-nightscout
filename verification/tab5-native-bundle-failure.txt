@@ -1,0 +1,2 @@
+E (103055) esp-x509-crt-bundle: Failed to verify certificate
+Auth HTTP-client=-1 TLS=-12288 verify=0x00000000 X509 - A fatal error occurred, eg the chain is too long or the vrfy callback failed; UTC=1793992906 free=304796 largest=221172 roots=118 verifier=SDK-indexed

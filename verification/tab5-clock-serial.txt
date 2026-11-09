@@ -1,0 +1,16 @@
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=388128
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+RTC hardware: detected; stores UTC
+RTC readback UTC: 2026-11-06 22:32:04
+SGV body: result=19645 bytes=19645 expected=19645 limit=196608 overflow=0
+AAPS body: result=4909 bytes=4909 expected=4909 limit=196608 overflow=0
+Treatments body: result=48165 bytes=48165 expected=48165 limit=196608 overflow=0
+Treatments body: result=2565 bytes=2565 expected=2565 limit=196608 overflow=0
+Treatments cache: pages=2 markers=64 truncated=0
+SGV body: result=19643 bytes=19643 expected=19643 limit=196608 overflow=0
+AAPS body: result=6817 bytes=6817 expected=6817 limit=196608 overflow=0
+Treatments body: result=48165 bytes=48165 expected=48165 limit=196608 overflow=0
+Treatments body: result=2806 bytes=2806 expected=2806 limit=196608 overflow=0
+Treatments cache: pages=2 markers=64 truncated=0

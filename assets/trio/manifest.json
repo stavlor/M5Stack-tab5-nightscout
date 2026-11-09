@@ -1,0 +1,447 @@
+{
+  "sample_rate": 12000,
+  "format": "unsigned 8-bit mono PCM",
+  "normalization": "per-clip peak to +/-112 (about -1.2 dBFS); originals unchanged",
+  "clips": [
+    {
+      "name": "trio_acoustic_lg_mild",
+      "source_sha256": "c9dfac7f7720265a8d8998e2cd9fc04b4caed4107d1026892263a0fd2fabece9",
+      "offset": 0,
+      "samples": 72150,
+      "decoded_peak": 0.355771541595459,
+      "gain_db": 7.816736947846669,
+      "pcm_peak": 112,
+      "pcm_sha256": "5fc1635ee975bdbd55fbdcd654f233c3b565918031d407f0f55480ba6c91b79a"
+    },
+    {
+      "name": "trio_acoustic_lg_medium",
+      "source_sha256": "19b2b468b02019fa7e1f0c4fce70c4634d7d30b060c3454162625e65d89e11ee",
+      "offset": 72150,
+      "samples": 72150,
+      "decoded_peak": 0.3297324776649475,
+      "gain_db": 8.476926541240763,
+      "pcm_peak": 112,
+      "pcm_sha256": "91bc06a55eeb8a81f858ae36a064cbf4d150dc298ad7058f18079330b93d1fb4"
+    },
+    {
+      "name": "trio_acoustic_lg_harsh",
+      "source_sha256": "43e1ffce5d0289c133154c8288dfe320b7cfc407ff529dafc8c9310075ab5c5e",
+      "offset": 144300,
+      "samples": 72150,
+      "decoded_peak": 0.3268667161464691,
+      "gain_db": 8.552747061800293,
+      "pcm_peak": 112,
+      "pcm_sha256": "538e073909b0950a0266c3f0ca033c60dc9ae7e49a6d20392499a18fb032c121"
+    },
+    {
+      "name": "trio_acoustic_hg_mild",
+      "source_sha256": "3b67f155f3d2d329390b43548f3e03b1577aacfca1ad5aceaf94fe0894e73167",
+      "offset": 216450,
+      "samples": 72150,
+      "decoded_peak": 0.3464432954788208,
+      "gain_db": 8.047517838541404,
+      "pcm_peak": 112,
+      "pcm_sha256": "f80958421b7d1d41fb68b621795994c848d60d6a0a6ef757ec2ac16051bbb2f8"
+    },
+    {
+      "name": "trio_acoustic_hg_medium",
+      "source_sha256": "46a997ac2355cf4b8fe902cfb3a73f7795674e0a039d2331ee3c6b9c04140177",
+      "offset": 288600,
+      "samples": 72150,
+      "decoded_peak": 0.2771434783935547,
+      "gain_db": 9.986067791630674,
+      "pcm_peak": 112,
+      "pcm_sha256": "c55875253de835cbc0c14a1ba31f2b759d4a75efa8199096883f022761dc558a"
+    },
+    {
+      "name": "trio_acoustic_hg_harsh",
+      "source_sha256": "e4e60cea20f4226c49d446a16d72ca5e4c803c9f85adc4f898b3d0ed7f1aadb6",
+      "offset": 360750,
+      "samples": 72150,
+      "decoded_peak": 0.3062817454338074,
+      "gain_db": 9.117738792849888,
+      "pcm_peak": 112,
+      "pcm_sha256": "caaae2e34cbe15dc8e3555deb34e1e7f204de0f0ea6bde02bb7863fdd76e9cf1"
+    },
+    {
+      "name": "trio_acoustic_dts_mild",
+      "source_sha256": "15ee73bbb11f7bc1a3e7f7de2eb4c831d8e8d7f21978d914e8996630584f8715",
+      "offset": 432900,
+      "samples": 57661,
+      "decoded_peak": 0.5612310171127319,
+      "gain_db": 3.8573277638307335,
+      "pcm_peak": 112,
+      "pcm_sha256": "5ee88832e9779542dc5586489b25d403559103213917ee06a6216d95387d630a"
+    },
+    {
+      "name": "trio_acoustic_dts_medium",
+      "source_sha256": "8b4d5a3d11a7cd2aae1c53de5ca99422b1df5c1c40173cc8f6dd3053e7c95e5a",
+      "offset": 490561,
+      "samples": 72150,
+      "decoded_peak": 0.20585840940475464,
+      "gain_db": 12.568788804193083,
+      "pcm_peak": 112,
+      "pcm_sha256": "51c1650a7a1ac68c4612d47923722a3072ab9f3ac160e80b82bf9af27bf1e2fd"
+    },
+    {
+      "name": "trio_acoustic_dts_harsh",
+      "source_sha256": "c4dd2cddef949b4e76d729200f2de23096137ab48e8591b45934ccb9141c00d2",
+      "offset": 562711,
+      "samples": 72150,
+      "decoded_peak": 0.11275826394557953,
+      "gain_db": 17.797193445553788,
+      "pcm_peak": 112,
+      "pcm_sha256": "d1cf3fef03b858e6e873d52b6e0f3583c8766c10a20ce1e8931c5c3d7808c21b"
+    },
+    {
+      "name": "trio_acoustic_dcr_mild",
+      "source_sha256": "369d4b6cde539e09b0eaead6285f1be80873b128fd8811b8f59e712be5bfd5e1",
+      "offset": 634861,
+      "samples": 57661,
+      "decoded_peak": 0.3678567409515381,
+      "gain_db": 7.526586683038641,
+      "pcm_peak": 112,
+      "pcm_sha256": "d99ca5429f0f3525086bb26891d61248734709771e6cd0a76ca3bb4902d3fefe"
+    },
+    {
+      "name": "trio_acoustic_dcr_medium",
+      "source_sha256": "8489521666119c9fb72c5d3ae4288fa8a76cc6900b79ca3703c83b08f1273f7e",
+      "offset": 692522,
+      "samples": 57661,
+      "decoded_peak": 0.3636283576488495,
+      "gain_db": 7.627006171747658,
+      "pcm_peak": 112,
+      "pcm_sha256": "8e44bd0bd0d30f6434ae26033d06936da6037b45dd9a2ab40d926b513126f9ac"
+    },
+    {
+      "name": "trio_acoustic_dcr_harsh",
+      "source_sha256": "2a2b5b40b32a25dc11ec23167d49cbcee95a91333f17230069d5d9da26af5dd8",
+      "offset": 750183,
+      "samples": 57661,
+      "decoded_peak": 0.42587149143218994,
+      "gain_db": 6.254589687855257,
+      "pcm_peak": 112,
+      "pcm_sha256": "a9d15ff04a69b8d9fb52c7756010585bbfcb201e5b5b9d159cd4c5d7f3dfcb19"
+    },
+    {
+      "name": "trio_acoustic_lgs_mild",
+      "source_sha256": "2e711b70b8423e43a85559626f5e4fa8b9733c01e1cbac2c68bdbed4568ac49a",
+      "offset": 807844,
+      "samples": 64906,
+      "decoded_peak": 0.34759795665740967,
+      "gain_db": 8.018616764466042,
+      "pcm_peak": 112,
+      "pcm_sha256": "8c0fa1ff4988ae8c3ecfc8769f98379aa5980d0330c490757ac02c28e5b53be5"
+    },
+    {
+      "name": "trio_acoustic_lgs_medium",
+      "source_sha256": "bca04156c082f061957dcd0ff934fa6762be8e8ec31fe9c2051df794c2eab291",
+      "offset": 872750,
+      "samples": 64906,
+      "decoded_peak": 0.33315274119377136,
+      "gain_db": 8.387293240229825,
+      "pcm_peak": 112,
+      "pcm_sha256": "06bd2fadbca2b3cc515eeea929ab401f96259e69ac4f7af20abc5110ef7f8d66"
+    },
+    {
+      "name": "trio_acoustic_lgs_harsh",
+      "source_sha256": "5f6f20a92e5f1ec36e56300dda96da588894def5b88954fa792c505e96b16344",
+      "offset": 937656,
+      "samples": 64906,
+      "decoded_peak": 0.3323449492454529,
+      "gain_db": 8.408379399536708,
+      "pcm_peak": 112,
+      "pcm_sha256": "4d9214b3e37b9b30bcdcbb67140b8348fe91ab0d4fda72679a78206580c520fe"
+    },
+    {
+      "name": "trio_acoustic_ulg_mild",
+      "source_sha256": "56dcde86e62dbc95a9e9bcaea47cc0c4656c4b9a86beca4de70a66a3aaa3adde",
+      "offset": 1002562,
+      "samples": 129829,
+      "decoded_peak": 0.35636666417121887,
+      "gain_db": 7.802219624732586,
+      "pcm_peak": 112,
+      "pcm_sha256": "abe0eec3661886f8aaebb2cd9b20023b07b4d2da23743f710ac0f8e9fc4f8003"
+    },
+    {
+      "name": "trio_acoustic_ulg_medium",
+      "source_sha256": "fea9b9594c1963a76566658b5b75e5b613c0bdd099a9d2a7c432244f1a2decae",
+      "offset": 1132391,
+      "samples": 129829,
+      "decoded_peak": 0.3306858539581299,
+      "gain_db": 8.451848718224648,
+      "pcm_peak": 112,
+      "pcm_sha256": "e50b1eeb31c997a6cd0ca019bc4a4beb7b14a788dcb9ddd94e85800d02364eb4"
+    },
+    {
+      "name": "trio_acoustic_ulg_harsh",
+      "source_sha256": "0f3146e9810b14ca0db1d40549eff65bb9dfea088db3a2376b730f29e7a45a8a",
+      "offset": 1262220,
+      "samples": 129829,
+      "decoded_peak": 0.24491170048713684,
+      "gain_db": 11.059970385668143,
+      "pcm_peak": 112,
+      "pcm_sha256": "70880bd717055b9f59a9318053ec3a4f78f61b4913c3b11085416f8c667f1a37"
+    },
+    {
+      "name": "trio_electronic_lg_mild",
+      "source_sha256": "f69b4368c64ecc17bffd97978ef53b18d77a6c4df584a68f7ddc6ea593399b60",
+      "offset": 1392049,
+      "samples": 72150,
+      "decoded_peak": 0.21980422735214233,
+      "gain_db": 11.999440247008579,
+      "pcm_peak": 112,
+      "pcm_sha256": "28138feffea330bc7ef5b6c8e764d2be6c1c0f393d20c88af2820e5b507acab3"
+    },
+    {
+      "name": "trio_electronic_lg_medium",
+      "source_sha256": "cb7f65bb269bba29cb3af41e4b85fda75197a131e3e8aed0e1d825f9069403f1",
+      "offset": 1464199,
+      "samples": 72150,
+      "decoded_peak": 0.20583102107048035,
+      "gain_db": 12.569944491133857,
+      "pcm_peak": 112,
+      "pcm_sha256": "d6c87ba26f3b6d32108ff607a2fb877b6284bbab75d0e5c7b7a6e0d87e4aa52a"
+    },
+    {
+      "name": "trio_electronic_lg_harsh",
+      "source_sha256": "90aa2aa272cf746f1565ef7bbf55ee21d9346532fddeb6dc9353e1c7268a8c23",
+      "offset": 1536349,
+      "samples": 72150,
+      "decoded_peak": 0.2979320287704468,
+      "gain_db": 9.357817181405068,
+      "pcm_peak": 112,
+      "pcm_sha256": "b23d12b8934592320fd0ab9a9df97c361841b5f020920b1815cca2cf95a6e05d"
+    },
+    {
+      "name": "trio_electronic_hg_mild",
+      "source_sha256": "90511a8a8ea49e873143b5d0c29b3df2252ea3392c4b5e15b5167ca8329342f2",
+      "offset": 1608499,
+      "samples": 72150,
+      "decoded_peak": 0.196526437997818,
+      "gain_db": 12.971741405991153,
+      "pcm_peak": 112,
+      "pcm_sha256": "a8f1f1f2c24b705dc3e24b2729faa1c55cd0d379e54732db2d9a94014667f854"
+    },
+    {
+      "name": "trio_electronic_hg_medium",
+      "source_sha256": "adb4592120778089f5a7c10a8f113fe8f911b8bdb465b971c935a1efecff901f",
+      "offset": 1680649,
+      "samples": 72150,
+      "decoded_peak": 0.20623622834682465,
+      "gain_db": 12.552861906568824,
+      "pcm_peak": 112,
+      "pcm_sha256": "9548affecff638d12ea179f4b808f4c6adcaa4f100305697dee887ee767e8884"
+    },
+    {
+      "name": "trio_electronic_hg_harsh",
+      "source_sha256": "27af57c7111c41025197ffa38053af422642524eb8a2000234057ae0b6b07f59",
+      "offset": 1752799,
+      "samples": 72150,
+      "decoded_peak": 0.3194565176963806,
+      "gain_db": 8.751925995825802,
+      "pcm_peak": 112,
+      "pcm_sha256": "ad6561484d67d669ce8a9b4d40d7ffe638a559c13aa3e7f51d3b35557a8fce30"
+    },
+    {
+      "name": "trio_electronic_dts_mild",
+      "source_sha256": "4b2a664db2b5f2d30618a98f92ea50b23613f933e9aa11d2c3797c7985223a4d",
+      "offset": 1824949,
+      "samples": 86640,
+      "decoded_peak": 0.20277142524719238,
+      "gain_db": 12.700025985270575,
+      "pcm_peak": 112,
+      "pcm_sha256": "c8c025687ba6f798d6fded6bd20dbb6d099450726d2b0b91609041b1881d2e8f"
+    },
+    {
+      "name": "trio_electronic_dts_medium",
+      "source_sha256": "d960dc3b9fbdedf592d864441c9a3199362ac17c5d98de980ce3235c2427d42e",
+      "offset": 1911589,
+      "samples": 86640,
+      "decoded_peak": 0.20054377615451813,
+      "gain_db": 12.79597729516918,
+      "pcm_peak": 112,
+      "pcm_sha256": "f4a6d0e0bc17cf9913547b84c2ba9b192b6ce19c6a209bc6726f24534f927274"
+    },
+    {
+      "name": "trio_electronic_dts_harsh",
+      "source_sha256": "628f2779139836310c6121fabd5ab2274256cd59f41044194bd8f29d24163dd4",
+      "offset": 1998229,
+      "samples": 86640,
+      "decoded_peak": 0.2522159218788147,
+      "gain_db": 10.804711075828084,
+      "pcm_peak": 112,
+      "pcm_sha256": "e975ea1f4cf9e0789381ae584c82e74b84ec9604b69ccf965a92f8b9fff80fae"
+    },
+    {
+      "name": "trio_electronic_dcr_mild",
+      "source_sha256": "86c9fb472e32632d7b228797f3675f6727591f9cec7fcc71c1b95e897ece8554",
+      "offset": 2084869,
+      "samples": 57661,
+      "decoded_peak": 0.27681976556777954,
+      "gain_db": 9.996219130116772,
+      "pcm_peak": 112,
+      "pcm_sha256": "5c393b5fc2714cbfeaf4485daec76b5a36004db2cba0a6ec9f54005b3a8d2e07"
+    },
+    {
+      "name": "trio_electronic_dcr_medium",
+      "source_sha256": "f00507f8fae7780a773c050495cecf00761dea4cb4ef2aabb2f0be930c2509e2",
+      "offset": 2142530,
+      "samples": 57661,
+      "decoded_peak": 0.3021371364593506,
+      "gain_db": 9.23607888413287,
+      "pcm_peak": 112,
+      "pcm_sha256": "66b0ed1f335c34e2454f46d8283115484c03c676fe014dc2d4fa66b4cd2d8c35"
+    },
+    {
+      "name": "trio_electronic_dcr_harsh",
+      "source_sha256": "f773cb39886dba7f1f93084b9e3e70e9fa4c69e61044a01e36645e14b792bf99",
+      "offset": 2200191,
+      "samples": 57661,
+      "decoded_peak": 0.39729708433151245,
+      "gain_db": 6.857853502776289,
+      "pcm_peak": 112,
+      "pcm_sha256": "d46bb487fa8ffcfde5d8949c296dd46a829443d572d73f5e49e05e713383bafe"
+    },
+    {
+      "name": "trio_electronic_lgs_mild",
+      "source_sha256": "a350e1cdf1897259495de3f18b17802ce70b7df9ab416562de614daae702abab",
+      "offset": 2257852,
+      "samples": 64906,
+      "decoded_peak": 0.21865352988243103,
+      "gain_db": 12.045031203084202,
+      "pcm_peak": 112,
+      "pcm_sha256": "0066b1fe83d3914ccf383df005f54c139984ddde0b9f98c35bfe37dab1e496f3"
+    },
+    {
+      "name": "trio_electronic_lgs_medium",
+      "source_sha256": "4975f6a20fd700ae04b7ad96ea941cad13592360e034b3fe4ae600c374394320",
+      "offset": 2322758,
+      "samples": 64906,
+      "decoded_peak": 0.2142290323972702,
+      "gain_db": 12.222594535802118,
+      "pcm_peak": 112,
+      "pcm_sha256": "364170aeaa94c7e340eec4038ad603c1c6be566c9fadca705c566e8c366393bc"
+    },
+    {
+      "name": "trio_electronic_lgs_harsh",
+      "source_sha256": "b77e068f947b6d2a19d31cf66a0bffbe44e3d27ea043a086219500714a3cabdf",
+      "offset": 2387664,
+      "samples": 64906,
+      "decoded_peak": 0.30995842814445496,
+      "gain_db": 9.01409206364134,
+      "pcm_peak": 112,
+      "pcm_sha256": "3962ef991b1c9c92f498d9f1f1825a0295370113714b329879427e010bc9e025"
+    },
+    {
+      "name": "trio_electronic_ulg_mild",
+      "source_sha256": "a35b1f70eab1fc6277d924908f81200bb5c2dffabe1bd4cb3917855edf92c009",
+      "offset": 2452570,
+      "samples": 129829,
+      "decoded_peak": 0.21528694033622742,
+      "gain_db": 12.179807348503882,
+      "pcm_peak": 112,
+      "pcm_sha256": "50b70df021c70d01426be040c6e877deaebfb730d1ff307f1c6f4e29138efba9"
+    },
+    {
+      "name": "trio_electronic_ulg_medium",
+      "source_sha256": "c8d3471da5d8f71c4629e5e7390534767dbba39ec03c7a66487618cfcc8b4d7d",
+      "offset": 2582399,
+      "samples": 129829,
+      "decoded_peak": 0.2217380702495575,
+      "gain_db": 11.923355788152952,
+      "pcm_peak": 112,
+      "pcm_sha256": "2f0936077aed0b83d3f283b7537ef0e5da52d8ac3d13d45743dc13f6951efcee"
+    },
+    {
+      "name": "trio_electronic_ulg_harsh",
+      "source_sha256": "2955eb5b65607b8484f6166e654c8a360a3a2acd21efeeb79176f581b5637596",
+      "offset": 2712228,
+      "samples": 129829,
+      "decoded_peak": 0.36057621240615845,
+      "gain_db": 7.700219611138081,
+      "pcm_peak": 112,
+      "pcm_sha256": "de9bb7232761c89122fe614556fd0806e11652bb3625886f687b6be3ca1aa83b"
+    },
+    {
+      "name": "trio_tone_glass_bell",
+      "source_sha256": "c2cba279a76786972fd672106d759a26c765642ae7b9dd2da21fd65391a248c4",
+      "offset": 2842057,
+      "samples": 86640,
+      "decoded_peak": 0.1951693296432495,
+      "gain_db": 13.03192965174665,
+      "pcm_peak": 112,
+      "pcm_sha256": "f3538ffba29b348ca92854761863c549586fda0d92cf320993046e2bb4e71b80"
+    },
+    {
+      "name": "trio_tone_hard_saw_wave",
+      "source_sha256": "5b9078a7bb7c70feea01495b70385961c71891450b4f22971f9f476404289a52",
+      "offset": 2928697,
+      "samples": 64906,
+      "decoded_peak": 0.21372583508491516,
+      "gain_db": 12.243020607183183,
+      "pcm_peak": 112,
+      "pcm_sha256": "6224679423d2de2b46671982d74af58714373de838823050d2f1976826f586a0"
+    },
+    {
+      "name": "trio_tone_harp",
+      "source_sha256": "70706f777b1d59814716b8631415a0a35591608b1e6e04da18e21f41ec636f10",
+      "offset": 2993603,
+      "samples": 86640,
+      "decoded_peak": 0.13971269130706787,
+      "gain_db": 15.935443888158387,
+      "pcm_peak": 112,
+      "pcm_sha256": "b8f61882fb11632033bd41a26db6c9ff75336e99febbc9da6698d6045984b306"
+    },
+    {
+      "name": "trio_tone_meow",
+      "source_sha256": "0a11ed8b4fe4293d4a2c18eda1b9ca6e41452de79f6d5670bd1048b82077ab1a",
+      "offset": 3080243,
+      "samples": 63234,
+      "decoded_peak": 1.0049121379852295,
+      "gain_db": -1.2024007785394124,
+      "pcm_peak": 112,
+      "pcm_sha256": "eeed030fb13b245091f7f76ff08ddd632fe9d96bde9fb851424cae10abe2b745"
+    },
+    {
+      "name": "trio_tone_open_can",
+      "source_sha256": "ca3de60fc9e30b56459a7a16433c0c7e57bac6f8383315c8831e9391cf1ebdd4",
+      "offset": 3143477,
+      "samples": 86640,
+      "decoded_peak": 1.2799650430679321,
+      "gain_db": -3.303801116729685,
+      "pcm_peak": 112,
+      "pcm_sha256": "c4624b2dbc884d9977a689cd4948c82e9d9a5b7e8b73087d7438a0b5adcf0783"
+    },
+    {
+      "name": "trio_tone_open_wrapper",
+      "source_sha256": "6ca002af0eaf1094eebc4e838fba67046debb4e8a235138d852022c5ff77f601",
+      "offset": 3230117,
+      "samples": 86640,
+      "decoded_peak": 0.4580816924571991,
+      "gain_db": 5.621302355406773,
+      "pcm_peak": 112,
+      "pcm_sha256": "e806c1df2b0a521c3f7015946bc8395d074450b869b60d4b3d5a7686436618e2"
+    },
+    {
+      "name": "trio_tone_saw_wave",
+      "source_sha256": "808dede30d1a02c645bb1059f95ec17619d7f5151a58e8fa82c6e5fb7a203fd3",
+      "offset": 3316757,
+      "samples": 86640,
+      "decoded_peak": 0.14197251200675964,
+      "gain_db": 15.796075727628004,
+      "pcm_peak": 112,
+      "pcm_sha256": "23ec9332cb8764e44ef85eb8d8f8fd664239426c6689e2477bf47278df4e134e"
+    },
+    {
+      "name": "trio_tone_sine_wave",
+      "source_sha256": "f796347015478f6335680792495e223ac44c73a90c9117b6bf2809cc96d94fe4",
+      "offset": 3403397,
+      "samples": 86640,
+      "decoded_peak": 0.1184392124414444,
+      "gain_db": 17.370250842513066,
+      "pcm_peak": 112,
+      "pcm_sha256": "c7378ed4fd74e57ae2cf1f3cb92937cbd70a98820d392c3287861371eca0af53"
+    }
+  ]
+}

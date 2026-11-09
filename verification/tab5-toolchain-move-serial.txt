@@ -1,0 +1,27 @@
+[capture] opened COM4
+[capture] hard reset requested
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=505080
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+Snapshots: 3 x 65920 bytes in PSRAM; internal free=504584
+RTC hardware: detected; stores UTC
+Power indicator: pack=8272mV current=0mA estimate=100 charging=0
+Loop watchdog: enabled (30 s, reboot on hang)
+Refresh: collection mask=7 full-day backfill
+RTC readback UTC: 2026-11-09 17:01:01
+SGV body: result=19632 bytes=19632 expected=19632 limit=196608 overflow=0
+AAPS body: result=28143 bytes=28143 expected=28143 limit=196608 overflow=0
+Treatments body: result=50098 bytes=50098 expected=50098 limit=196608 overflow=0
+Treatments body: result=12108 bytes=12108 expected=12108 limit=196608 overflow=0
+Treatments cache: pages=2 markers=91 truncated=0
+Live:
+Live: subscribed to entries, devicestatus, treatments
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19632 bytes=19632 expected=19632 limit=196608 overflow=0
+AAPS body: result=28143 bytes=28143 expected=28143 limit=196608 overflow=0
+Treatments body: result=50098 bytes=50098 expected=50098 limit=196608 overflow=0
+Treatments body: result=12108 bytes=12108 expected=12108 limit=196608 overflow=0
+Treatments cache: pages=2 markers=91 truncated=0
+
+[capture] done

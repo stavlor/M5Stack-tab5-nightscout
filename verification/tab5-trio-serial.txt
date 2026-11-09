@@ -1,0 +1,48 @@
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=374056
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+RTC hardware: detected; stores UTC
+Power indicator: pack=8269mV current=0mA estimate=100 charging=0
+Refresh: collection mask=7 full-day backfill
+RTC readback UTC: 2026-11-08 17:47:34
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+AAPS body: result=5184 bytes=5184 expected=5184 limit=196608 overflow=0
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+Treatments body: result=18224 bytes=18224 expected=18224 limit=196608 overflow=0
+Treatments cache: pages=2 markers=98 truncated=0
+Live: verified WebSocket connected
+Live: subs
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+AAPS body: result=5184 bytes=5184 expected=5184 limit=196608 overflow=0
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+Treatments body: result=18224 bytes=18224 expected=18224 limit=196608 overflow=0
+Treatments cache: pages=2 markers=98 truncated=0
+Live: create collection mask=1
+Refresh: collection mask=1 live change
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+Live: create collection mask=2
+Refresh: collection mask=2 live change
+AAPS body: result=5041 bytes=5041 expected=5041 limit=196608 overflow=0
+Speaker DAC startup: ready
+Speaker: vol=255 rate=48000 stereo=1 out=26 mclk=30
+Speaker: codec=1 DACmute=20 power=3C IO=1 amp=76 playing=1
+Alert audio: event=0 choice=0 intensity=0 samples=72150
+Speaker: vol=255 rate=48000 stereo=1 out=26 mclk=30
+Speaker: codec=1 DACmute=20 power=3C IO=1 amp=76 playing=1
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19471 bytes=19471 expected=19471 limit=196608 overflow=0
+Alert audio: event=0 choice=0 intensity=0 samples=72150
+Speaker: vol=255 rate=48000 stereo=1 out=26 mclk=30
+Speaker: codec=1 DACmute=20 power=3C IO=1 amp=76 playing=1
+AAPS body: result=5041 bytes=5041 expected=5041 limit=196608 overflow=0
+Treatments body: result=49008 bytes=49008 expected=49008 limit=196608 overflow=0
+Treatments body: result=17983 bytes=17983 expected=17983 limit=196608 overflow=0
+Treatments cache: pages=2 markers=98 truncated=0
+Alert audio: event=1 choice=1 intensity=0 samples=72150
+Speaker: vol=255 rate=48000 stereo=1 out=26 mclk=30
+Speaker: codec=1 DACmute=20 power=3C IO=1 amp=76 playing=1
+Alert audio: event=0 choice=0 intensity=1 samples=72150
+Speaker: vol=255 rate=48000 stereo=1 out=26 mclk=30
+Speaker: codec=1 DACmute=20 power=3C IO=1 amp=76 playing=1

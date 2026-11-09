@@ -1,0 +1,100 @@
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=388328
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+SGV body: result=19663 bytes=19663 expected=19663 limit=196608 overflow=0
+AAPS body: result=5305 bytes=5305 expected=5305 limit=196608 overflow=0
+Treatments body: result=48801 bytes=48801 expected=48801 limit=196608 overflow=0
+Treatments body: result=3658 bytes=3658 expected=3658 limit=196608 overflow=0
+Treatments cache: pages=2 markers=72 truncated=0
+SGV body: result=19663 bytes=19663 expected=19663 limit=196608 overflow=0
+AAPS body: result=5305 bytes=5305 expected=5305 limit=196608 overflow=0
+Treatments body: result=48801 bytes=48801 expected=48801 limit=196608 overflow=0
+Treatments body: result=3658 bytes=3658 expected=3658 limit=196608 overflow=0
+Treatments cache: pages=2 markers=72 truncated=0
+SGV body: result=19663 bytes=19663 expected=19663 limit=196608 overflow=0
+AAPS body: result=5305 bytes=5305 expected=5305 limit=196608 overflow=0
+Treatments body: result=48801 bytes=48801 expected=48801 limit=196608 overflow=0
+Treatments body: result=3385 bytes=3385 expected=3385 limit=196608 overflow=0
+Treatments cache: pages=2 markers=71 truncated=0
+SGV body: result=19663 bytes=19663 expected=19663 limit=196608 overflow=0
+AAPS body: result=5305 bytes=5305 expected=5305 limit=196608 overflow=0
+E (74206) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:
+E (74206) task_wdt:  - IDLE0 (CPU 0)
+E (74206) task_wdt: Tasks currently running:
+E (74206) task_wdt: CPU 0: network
+E (74206) task_wdt: CPU 1: IDLE1
+E (74206) task_wdt: Aborting.
+E (74206) task_wdt: Print CPU 0 (current core) registers
+
+
+Core  0 register dump:
+MEPC    : 0x4ff0a346  RA      : 0x4ff0a322  SP      : 0x4ff71920  GP      : 0x4ff14c00  
+TP      : 0x4ff72170  T0      : 0x63222c22  T1      : 0x4ff0d7a0  T2      : 0x4c414d52  
+S0/FP   : 0x4ff7d018  S1      : 0x00000000  A0      : 0x00000002  A1      : 0x4ff7198c  
+A2      : 0x00000000  A3      : 0x7f000000  A4      : 0x00000000  A5      : 0x1f000000  
+A6      : 0xfa000000  A7      : 0x00000003  S2      : 0x4ff7d06c  S3      : 0x4ff7198c  
+S4      : 0x00000000  S5      : 0x4855a844  S6      : 0x7fffffff  S7      : 0x00000000  
+S8      : 0xffffa000  S9      : 0xffff9a80  S10     : 0x00000014  S11     : 0x00000016  
+T3      : 0x36323032  T4      : 0x223a2274  T5      : 0x615f6465  T6      : 0x74616572  
+MSTATUS : 0x00000000  MTVEC   : 0x00000000  MCAUSE  : 0x4ff76ed0  MTVAL   : 0x00000000  
+MHARTID : 0x00000000  
+
+Stack memory:
+4ff71920: 0x00000000 0x00000000 0x4ff76ed0 0x00000000 0x00000000 0x4ff719bc 0x4ff7657c 0x00000000
+4ff71940: 0x00000000 0x4855a844 0x00000000 0x4ff719fc 0x00000000 0x4ff719fc 0x4ff7198c 0x40063a7c
+4ff71960: 0x00000000 0x4ff719fc 0x4ff7657c 0x4006377a 0x00000000 0x4ff76ee0 0x4ff7657c 0x40064666
+4ff71980: 0x00000000 0x00000000 0x4ff3f1a0 0x00000000 0x00000008 0xfffffff5 0x4ff7657c 0x400647b4
+4ff719a0: 0x00000000 0x00000000 0x4ff76ed0 0x4ff0a004 0x00000000 0x00000000 0x00000000 0x00000000
+4ff719c0: 0x4ff7e758 0x00000000 0x00000000 0x00000005 0x4ff7e758 0x4ff55000 0x00000000 0x4ff5267c
+4ff719e0: 0x00000000 0x00000005 0x4ff5267c 0x4004c03a 0x00000000 0x00000000 0x4ff5267c 0x00000000
+4ff71a00: 0x00000017 0x00000000 0x4ff7e758 0x00006000 0x4ff7e758 0x4ff55000 0x00000000 0x00000005
+4ff71a20: 0x00000000 0x00000000 0x4ff5267c 0x4004dd04 0x00000005 0x00000005 0xffffffff 0x4855a844
+4ff71a40: 0x00000005 0x00000005 0x4ff7e758 0x400aadf2 0x00000001 0x00000000 0x00000030 0x4ff0e50a
+4ff71a60: 0x00000001 0x00000000 0x00000017 0x400d0020 0x00006680 0x4001bcdc 0xffffffff 0x00000003
+4ff71a80: 0x00000005 0x00000005 0x4ff7e758 0x400aadea 0x00000000 0x00000000 0x4ff7e758 0x400a3c10
+4ff71aa0: 0x00000001 0x00000000 0x00000017 0x400a460a 0xfa000000 0x00000003 0x00000001 0xffff9b80
+4ff71ac0: 0x00006680 0x4ff7e758 0x0000001a 0x4ff71ec8 0x4ff55000 0x4ff7e758 0x0000001a 0x00000015
+4ff71ae0: 0x00000016 0x00000001 0xffffffff 0x00000003 0x4ff01064 0x4ff0b08c 0x4ff71b70 0x6ab0f2d5
+4ff71b00: 0x4ff72170 0x63222c22 0x4ff0d7a0 0x4ff71ec8 0x4ff55000 0x4ff7e758 0x0000001a 0x00000015
+4ff71b20: 0x00000016 0x00000001 0xffffffff 0x00000003 0x00000000 0x00000000 0x00000017 0x400a4e32
+4ff71b40: 0x0000bbe9 0xffffffff 0x4ff71d78 0x00000000 0x00000000 0x00001000 0x0000bbe9 0x0000bea1
+4ff71b60: 0x000002b8 0x4ff7e758 0x4ff71ce0 0x4001bcdc 0x00001000 0x00000000 0x4ff71ce0 0x4001af8e
+4ff71b80: 0x000002b8 0x4ff71c30 0x4ff71d78 0x4001bf50 0x000002b8 0x4ff71c30 0x4ff8dc50 0x4001c62c
+4ff71ba0: 0x4ff55000 0x00000001 0x4ff14654 0x4854d110 0x00000002 0x0000000a 0x0000bea1 0x4ff71c30
+4ff71bc0: 0x4ff55000 0x4ff71d78 0x00000000 0x4001cc2c 0x00000404 0x00030001 0x00030001 0x31616562
+4ff71be0: 0x00000000 0x00000000 0x84030001 0x6ab0f2d5 0x4ff1a120 0x6aee2ce3 0x00000000 0x00000002
+4ff71c00: 0x00000001 0x4012c13c 0x40101724 0x4002d30a 0x00000000 0x4ff7b348 0x4ff2a770 0x4ff1055e
+4ff71c20: 0x00000000 0x4ff2a258 0x00000030 0x4ff71f4c 0x4012c1b8 0x00000000 0x000003e8 0x4007ecb8
+4ff71c40: 0x48564e3c 0x00030000 0x000002b8 0x00000000 0x4ff14a9d 0x4ff7b610 0x4ff8dc50 0x4ff8dc50
+4ff71c60: 0x4ff8ea30 0x4ff8ec50 0x4ff2a700 0x4ff1055e 0x4ff8ec40 0x4ff8ec40 0x00003040 0x4007b9f0
+4ff71c80: 0x4ff0afaa 0x4ff0a4cc 0x4855a72c 0x4855a72c 0x4855bcec 0x4855bf2c 0x00000000 0x00000000
+4ff71ca0: 0x4855bf1c 0x4855bf0c 0x4ff7bd20 0x00000001 0x00000000 0x00000000 0x48595e3c 0x48595e3c
+4ff71cc0: 0x485a503c 0x485a5e3c 0x4ff7bd00 0x00000000 0x485a5e2c 0x485a5e1c 0x4ff54320 0x4ff55000
+4ff71ce0: 0x4012c13c 0x00000000 0x00004e20 0x0000f8e0 0x00000000 0x00000000 0x00000000 0x00000000
+4ff71d00: 0x4ff00001 0x00002710 0x00002710 0x00002710 0x00000000 0x4ff7e750 0x4ff7b680 0x00000000
+
+
+
+ELF file SHA256: bff3c495b
+
+Rebooting...
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0xc (SW_CPU_RESET),boot:0x30f (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4ff09684
+Core1 Saved PC:0x4ff0409c
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x1174
+load:0x4ff29ed0,len:0xccc
+load:0x4ff2cbd0,len:0x3540
+entry 0x4ff29ed0
+Tab5 startup: initializing hardware
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=388176
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+SGV body: result=19663 bytes=19663 expected=19663 limit=196608 overflow=0
+AAPS body: result=5305 bytes=5305 expected=5305 limit=196608 overflow=0
+Treatments body: result=48801 bytes=48801 expected=48801 limit=196608 overflow=0
+Treatments body: result=3385 bytes=3385 expected=3385 limit=196608 overflow=0
+Treatments cache: pages=2 markers=71 truncated=0

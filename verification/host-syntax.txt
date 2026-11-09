@@ -1,0 +1,1 @@
+Clang 19.1.7 C++17 host fixture syntax check: exit 0, no diagnostics. Assertions not executed.

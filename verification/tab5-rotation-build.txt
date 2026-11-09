@@ -1,0 +1,43 @@
+Processing tab5 (platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.37/platform-espressif32.zip; board: esp32-p4-evboard; framework: arduino)
+--------------------------------------------------------------------------------
+Warning: No internet connection detected, Python dependency check will be skipped.
+Warning: No internet connection detected, Python dependency check will be skipped.
+Verbose mode can be enabled via `-v, --verbose` option
+Warning: No internet connection detected, Python dependency check will be skipped.
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-p4-evboard.html
+PLATFORM: Espressif 32 (55.3.37) > Espressif ESP32-P4 Function EV Board (ES pre rev.300)
+HARDWARE: ESP32P4 360MHz, 500KB RAM, 16MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.7 
+ - framework-arduinoespressif32-libs @ 5.5.0+sha.87912cd291 
+ - tool-esptoolpy @ 5.1.2 
+ - toolchain-riscv32-esp @ 14.2.0+20251107
+*** Applied include path shortening for 288 framework paths ***
+*** Path length reduced from 53681 to ~11795 characters ***
+*** Estimated savings: 41472 characters ***
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- M5Unified @ 0.2.28
+|-- M5GFX @ 0.2.35
+|-- ArduinoJson @ 6.21.5
+|-- DNSServer @ 3.3.7
+|-- HTTPClient @ 3.3.7
+|-- Preferences @ 3.3.7
+|-- WebServer @ 3.3.7
+|-- WiFi @ 3.3.7
+|-- NetworkClientSecure @ 3.3.7
+Building in release mode
+Compiling .pio\build\tab5\src\main.cpp.o
+The system cannot execute the specified program.
+*** [.pio\build\tab5\src\main.cpp.o] Error 1
+========================== [FAILED] Took 9.83 seconds ==========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+tab5           FAILED    00:00:09.826
+==================== 1 failed, 0 succeeded in 00:00:09.826 ====================

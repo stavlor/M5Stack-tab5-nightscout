@@ -1,0 +1,2 @@
+#pragma once
+constexpr const char *TAB5_CA_BUNDLE_SHA256="9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578";

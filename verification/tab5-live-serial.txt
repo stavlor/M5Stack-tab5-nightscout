@@ -1,0 +1,43 @@
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=374320
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+RTC hardware: detected; stores UTC
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19636 bytes=19636 expected=19636 limit=196608 overflow=0
+AAPS body: result=6090 bytes=6090 expected=6090 limit=196608 overflow=0
+RTC readback UTC: 2026-11-07 00:12:08
+Treatments body: result=48220 bytes=48220 expected=48220 limit=196608 overflow=0
+Treatments body: result=3854 bytes=3854 expected=3854 limit=196608 overflow=0
+Treatments cache: pages=2 markers=68 truncated=0
+Live: verified WebSoc
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19636 bytes=19636 expected=19636 limit=196608 overflow=0
+AAPS body: result=6090 bytes=6090 expected=6090 limit=196608 overflow=0
+Treatments body: result=48220 bytes=48220 expected=48220 limit=196608 overflow=0
+Treatments body: result=3854 bytes=3854 expected=3854 limit=196608 overflow=0
+Treatments cache: pages=2 markers=68 truncated=0
+Live: create collection mask=1
+Refresh: collection mask=1 live change
+SGV body: result=19636 bytes=19636 expected=19636 limit=196608 overflow=0
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19636 bytes=19636 expected=19636 limit=196608 overflow=0
+AAPS body: result=6090 bytes=6090 expected=6090 limit=196608 overflow=0
+Live: update collection mask=4
+Live: create collection mask=4
+Treatments body: result=48220 bytes=48220 expected=48220 limit=196608 overflow=0
+Live: create collection mask=2
+Treatments body: result=3854 bytes=3854 expected=3854 limit=196608 overflow=0
+Treatments cache: pages=2 markers=68 truncated=0
+Refresh: collection mask=6 live change
+AAPS body: result=6619 bytes=6619 expected=6619 limit=196608 overflow=0
+Treatments body: result=48220 bytes=48220 expected=48220 limit=196608 overflow=0
+Treatments body: result=4095 bytes=4095 expected=4095 limit=196608 overflow=0
+Treatments cache: pages=2 markers=68 truncated=0
+Live: create collection mask=4
+Refresh: collection mask=4 live change
+Treatments body: result=48206 bytes=48206 expected=48206 limit=196608 overflow=0
+Live: create collection mask=2
+Treatments body: result=4368 bytes=4368 expected=4368 limit=196608 overflow=0
+Treatments cache: pages=2 markers=69 truncated=0
+Refresh: collection mask=2 live change
+AAPS body: result=8847 bytes=8847 expected=8847 limit=196608 overflow=0

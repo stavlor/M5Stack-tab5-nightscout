@@ -1,0 +1,9 @@
+Production firmware SHA256: e7f57f7a7841241f4bac6f114774e3d5bc5c75c00bf8785fdbd2958c8d0d8514
+Application checksum: verified
+Host fixtures: 191 passed, 0 failed
+Python CA tests: 5 passed
+Node/OpenSSL CA keys: 118 matched
+Portal frontend checks: passed
+Corrected-run error patterns: 0
+User confirmed: Live updates footer, Earlier/Return to live, Refresh
+No Nightscout records written for testing.

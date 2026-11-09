@@ -1,0 +1,91 @@
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:77:
+.pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32/Bus_I2C.hpp:66:10: warning: 'initDMA' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   66 |     void initDMA(void) {}
+      |          ^
+.pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32/../../Bus.hpp:81:18: note: overridden virtual function is here
+   81 |     virtual void initDMA(void) = 0;
+      |                  ^
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:77:
+.pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32/Bus_I2C.hpp:68:10: warning: 'execDMAQueue' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   68 |     void execDMAQueue(void) {}
+      |          ^
+.pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32/../../Bus.hpp:87:18: note: overridden virtual function is here
+   87 |     virtual void execDMAQueue(void) = 0;
+      |                  ^
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:78:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32p4/Bus_DSI.hpp:23:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/dsi/include/esp_lcd_mipi_dsi.h:11:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/include/esp_lcd_types.h:58:9: warning: empty struct has size 0 in C, size 1 in C++ [-Wextern-c-compat]
+   58 | typedef struct {
+      |         ^
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:78:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32p4/Bus_DSI.hpp:23:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/dsi/include/esp_lcd_mipi_dsi.h:156:9: warning: empty struct has size 0 in C, size 1 in C++ [-Wextern-c-compat]
+  156 | typedef struct {
+      |         ^
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:78:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32p4/Bus_DSI.hpp:24:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/include/esp_lcd_panel_io.h:12:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/include/esp_lcd_io_i2c.h:11:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_driver_i2c/include/driver/i2c_types.h:151:9: warning: empty struct has size 0 in C, size 1 in C++ [-Wextern-c-compat]
+  151 | typedef struct {
+      |         ^
+In file included from src/main.cpp:1:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.h:5:
+In file included from .pio/libdeps/tab5/M5Unified/src/M5Unified.hpp:19:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/M5GFX.h:47:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/device.hpp:78:
+In file included from .pio/libdeps/tab5/M5GFX@0.2.35/src/lgfx/v1/platforms/esp32p4/Bus_DSI.hpp:24:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/include/esp_lcd_panel_io.h:14:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_lcd/include/esp_lcd_io_parl.h:12:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_driver_parlio/include/driver/parlio_types.h:37:9: warning: empty struct has size 0 in C, size 1 in C++ [-Wextern-c-compat]
+   37 | typedef struct {
+      |         ^
+In file included from src/main.cpp:2:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h:34:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiSTA.h:30:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiGeneric.h:37:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_eth/include/esp_eth_driver.h:13:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32-libs/esp32p4_es/include/esp_eth/include/esp_eth_mac_esp.h:100:5: warning: empty struct has size 0 in C, size 1 in C++ [-Wextern-c-compat]
+  100 |     struct {
+      |     ^
+In file included from src/main.cpp:7:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/HTTPClient/src/HTTPClient.h:153:15: warning: anonymous non-C-compatible type given name for linkage purposes by typedef declaration; add a tag name here [-Wnon-c-typedef-for-linkage]
+  153 | typedef struct {
+      |               ^
+      |                Cookie
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/HTTPClient/src/HTTPClient.h:159:17: note: type is not C-compatible due to this default member initializer
+  159 |   String path = "";
+      |                 ^~
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/HTTPClient/src/HTTPClient.h:170:3: note: type is given name 'Cookie' for linkage purposes by this typedef declaration
+  170 | } Cookie;
+      |   ^
+In file included from src/main.cpp:11:
+In file included from C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/WebServer/src/WebServer.h:28:
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/libraries/FS/src/FS.h:59:10: warning: 'readBytes' overrides a member function but is not marked 'override' [-Winconsistent-missing-override]
+   59 |   size_t readBytes(char *buffer, size_t length) {
+      |          ^
+C:/Users/Paul/Documents/Codex/2026-11-06/referenced-chatgpt-conversation-this-is-an/work/pio/packages/framework-arduinoespressif32/cores/esp32/Stream.h:108:18: note: overridden virtual function is here
+  108 |   virtual size_t readBytes(char *buffer, size_t length);  // read chars from stream into buffer
+      |                  ^
+9 warnings generated.

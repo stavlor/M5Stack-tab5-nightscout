@@ -1,0 +1,10 @@
+.pio/
+.vscode/
+include/config.h
+__pycache__/
+*.log
+compile_commands.json
+.build-tools/
+.toolchain/
+.review-tools/
+.backup-*/

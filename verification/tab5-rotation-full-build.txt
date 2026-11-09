@@ -1,0 +1,73 @@
+Processing tab5 (platform: https://github.com/pioarduino/platform-espressif32/releases/download/55.03.37/platform-espressif32.zip; board: esp32-p4-evboard; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-p4-evboard.html
+PLATFORM: Espressif 32 (55.3.37) > Espressif ESP32-P4 Function EV Board (ES pre rev.300)
+HARDWARE: ESP32P4 360MHz, 500KB RAM, 16MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-builtin, esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.7 
+ - framework-arduinoespressif32-libs @ 5.5.0+sha.87912cd291 
+ - tool-esptoolpy @ 5.1.2 
+ - toolchain-riscv32-esp @ 14.2.0+20251107
+*** Applied include path shortening for 288 framework paths ***
+*** Path length reduced from 53681 to ~11795 characters ***
+*** Estimated savings: 41472 characters ***
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 47 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- M5Unified @ 0.2.28
+|-- M5GFX @ 0.2.35
+|-- ArduinoJson @ 6.21.5
+|-- DNSServer @ 3.3.7
+|-- HTTPClient @ 3.3.7
+|-- Preferences @ 3.3.7
+|-- WebServer @ 3.3.7
+|-- WiFi @ 3.3.7
+|-- NetworkClientSecure @ 3.3.7
+Building in release mode
+Compiling .pio\build\tab5\src\main.cpp.o
+Linking .pio\build\tab5\firmware.elf
+                            Memory Type Usage Summary                             
+┌─────────────────────┬──────────────┬──────────┬────────────────┬───────────────┐
+│ Memory Type/Section │ Used [bytes] │ Used [%] │ Remain [bytes] │ Total [bytes] │
+├─────────────────────┼──────────────┼──────────┼────────────────┼───────────────┤
+│ Flash               │      1460340 │          │                │               │
+│    .text            │       959552 │          │                │               │
+│    .rodata          │       423992 │          │                │               │
+│    .eh_frame        │        76204 │          │                │               │
+│    .init_array      │          336 │          │                │               │
+│    .appdesc         │          256 │          │                │               │
+│ DIRAM               │       273984 │    47.53 │         302480 │        576464 │
+│    .bss             │       152872 │    26.52 │                │               │
+│    .text            │        82916 │    14.38 │                │               │
+│    .data            │        19488 │     3.38 │                │               │
+│    .bss             │        18708 │     3.25 │                │               │
+│ HP core RAM         │          104 │     1.27 │           8088 │          8192 │
+│    .data            │           60 │     0.73 │                │               │
+│    .text            │           44 │     0.54 │                │               │
+│ LP RAM              │            0 │      0.0 │          32768 │         32768 │
+└─────────────────────┴──────────────┴──────────┴────────────────┴───────────────┘
+Total image size: 1562936 bytes (.bin may be padded larger)
+Note: The reported total sizes may be smaller than those in the technical reference manual due to reserved memory and application configuration. The total flash size available for the application is not included by default, as it cannot be reliably determined due to the presence of other data like the bootloader, partition table, and application partition size. The total external RAM size is not included either, because the amount of RAM connected to the chip is detected at boot and is not known during the build.
+Retrieving maximum program size .pio\build\tab5\firmware.elf
+Checking size .pio\build\tab5\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   7.5% (used 38196 bytes from 512000 bytes)
+Flash: [==        ]  22.7% (used 1485948 bytes from 6553600 bytes)
+Building .pio\build\tab5\firmware.bin with action:
+  $ERASETOOL --chip esp32p4 elf2image --flash-mode ${__get_board_flash_mode(__env__)} --flash-freq ${__get_board_f_image(__env__)} --flash-size 16MB --elf-sha256-offset 0xb0 -o "$TARGET" "$SOURCES"
+Building .pio\build\tab5\firmware.bin
+esptool v5.1.2
+Creating ESP32P4 image...
+Merged 4 ELF sections.
+Successfully created ESP32P4 image.
+========================= [SUCCESS] Took 17.29 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+tab5           SUCCESS   00:00:17.292
+========================= 1 succeeded in 00:00:17.292 =========================

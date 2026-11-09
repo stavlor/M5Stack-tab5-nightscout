@@ -1,0 +1,1 @@
+49c099ea584e0e1ef659cc3ad6781a5a4340d7afc916f87b528317d808219613  configured local firmware.bin (not distributed)
