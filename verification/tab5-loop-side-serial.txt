@@ -1,0 +1,34 @@
+[capture] opened COM4
+[capture] hard reset requested
+Tab5 startup: hardware initialized
+TLS memory: PSRAM preferred with internal fallback, free=29863704 internal=517688
+TLS trust: Mozilla/certifi 2026.10.23 roots=118 verifier=Tab5-root-key bundle=9d67cfc05dab24ab67d8c9270fc3562a8615e4839c30ddb2090880bf8fe0b578
+Snapshots: 3 x 66008 bytes in PSRAM; internal free=517192
+RTC hardware: detected; stores UTC
+Power indicator: pack=8277mV current=0mA estimate=100 charging=0
+Loop watchdog: enabled (30 s, reboot on hang)
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19562 bytes=19562 expected=19562 limit=196608 overflow=0
+AAPS body: result=28280 bytes=28280 expected=28280 limit=196608 overflow=0
+RTC readback UTC: 2026-11-09 22:37:56
+Treatments body: result=49677 bytes=49677 expected=49677 limit=196608 overflow=0
+Treatments body: result=16128 bytes=16128 expected=16128 limit=196608 overflow=0
+Treatments cache: pages=2 markers=100 truncated=0
+Care body: result=3929 bytes=3929 expected=3929 limit=196608 overflow=0
+Care events found: cannula=1 sensor=1 insulin=1
+Live
+Live: s
+Refresh: collection mask=7 full-day backfill
+SGV body: result=19562 bytes=19562 expected=19562 limit=196608 overflow=0
+AAPS body: result=28280 bytes=28280 expected=28280 limit=196608 overflow=0
+Treatments body: result=49677 bytes=49677 expected=49677 limit=196608 overflow=0
+Treatments body: result=16128 bytes=16128 expected=16128 limit=196608 overflow=0
+Treatments cache: pages=2 markers=100 truncated=0
+Live: create collection mask=1
+Refresh: collection mask=1 live change
+SGV body: result=19562 bytes=19562 expected=19562 limit=196608 overflow=0
+Live: update collection mask=4
+Live: create collection mask=4
+Refresh: collection mask=4 live change
+
+[capture] done

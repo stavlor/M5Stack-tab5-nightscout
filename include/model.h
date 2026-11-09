@@ -18,6 +18,7 @@ inline void makeFilter(DynamicJsonDocument &filter, bool glucose) {
     for (const char *k : {"IOB","COB","UAM","ZT"}) a["predBGs"][k]=true;
   }
   f["openaps"]["iob"]=true;
+  f["uploaderBattery"]=true;f["isCharging"]=true;f["uploader"]["battery"]=true;
   f["pump"]["status"]=true;
   JsonObject e=f["pump"]["extended"].to<JsonObject>();
   for (const char *k : {"TempBasalRemaining","TempBasalAbsoluteRate","BaseBasalRate"}) e[k]=true;
@@ -38,6 +39,8 @@ struct Status {
   int64_t uploaded = 0, loopTime = 0, pumpTime = 0, tempUntil = 0;
   Metric iob, cob, basal;
   char activity[24] = "Unknown", pump[40] = "Unknown", basalKind[12] = "Unknown";
+  // Uploader (AAPS phone) battery from the selected loop devicestatus.
+  float uploaderBattery = NAN; bool uploaderCharging = false; int64_t uploaderTime = 0;
 };
 inline bool number(JsonVariantConst v, float &n) {
   if (v.is<bool>() || !(v.is<float>() || v.is<long>() || v.is<double>())) return false;
@@ -147,6 +150,11 @@ inline bool statuses(JsonVariantConst root, const char *device, int64_t now, Sta
   Status s;
   if (selected.isNull()) { out=s; return true; }
   s.uploaded=newest;
+  float battery;
+  if ((number(selected["uploaderBattery"],battery) || number(selected["uploader"]["battery"],battery)) && battery>=0 && battery<=100) {
+    s.uploaderBattery=battery;s.uploaderTime=newest;
+    s.uploaderCharging=selected["isCharging"].is<bool>() && selected["isCharging"].as<bool>();
+  }
   JsonVariantConst aps=selected["openaps"], sug=aps["suggested"], en=aps["enacted"], io=aps["iob"];
   int64_t st=fieldTime(sug,"timestamp"), et=fieldTime(en,"timestamp");
   forecast(sug,now,s.forecast);

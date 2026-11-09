@@ -224,3 +224,18 @@ The SMB strip replaces floating per-dose labels in every view (about 12 clock-al
 | 60 s serial run | Boot internal heap 517,688 bytes free; watchdog enabled; full backfill and live subscription; no resets or panics |
 
 Evidence: `verification/tab5-all-views-upload.txt`, `verification/tab5-all-views-serial.txt`.
+
+
+## Loop card: uploader battery + CAGE/SAGE/IAGE — 2026-11-09
+
+New `include/care_age.h` (care-event parsing, age text, warning levels). `model::statuses` reads `uploaderBattery`/`isCharging`/`uploader.battery`; v3 devicestatus `fields` extended. Care events fetched with `/api/v3/treatments?eventType$in=Site Change|Sensor Start|Sensor Change|Insulin Change` (operator and `|` separator confirmed in cgm-remote-monitor `lib/api3/storage/mongoCollection/utils.js`; event names confirmed in AndroidAPS `TE.kt`).
+
+| Check | Result |
+|---|---|
+| Host C++ fixtures | **218 passed, 0 failed** (6 new: AAPS and nested uploader battery, out-of-range battery, latest-of-each care event incl. deleted/future/other types, age text, warning levels) |
+| Firmware build / upload COM4 | **Passed**, hash verified |
+| Serial run | Care request 3,929 bytes; `Care events found: cannula=1 sensor=1 insulin=1`; second full refresh correctly skipped by the 10-minute limit; live updates normal; no resets or panics |
+
+README repair: the all-views README edit had matched an LF paragraph break in a CRLF file and removed the Rotation, Clock format, display/controls, Hardware, Windows helper and local-toolchain sections. They were restored from `.backup-2026-11-09/all-views-scale/README.md` with the current SMB, glucose-scale and Loop card text.
+
+Evidence: `verification/tab5-loop-side-upload.txt`, `verification/tab5-loop-side-serial.txt`.

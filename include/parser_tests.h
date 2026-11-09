@@ -16,6 +16,7 @@
 #include "smb_labels.h"
 #include "graph_scale.h"
 #include "graph_time.h"
+#include "care_age.h"
 #include "quick_settings.h"
 #include "runtime_settings.h"
 #include "tls_diagnostics.h"
@@ -546,6 +547,28 @@ inline int runParserTests() {
    {time_t f=time_t(d.items[d.size-1].from);tm l;localtime_r(&f,&l);dst&=l.tm_hour%2==0;}
    check(dst,"Two-hour buckets stay contiguous on whole hours across a DST change and realign after it");
    setenv("TZ","UTC0",1);tzset();
+  }
+  {
+   DynamicJsonDocument ds(4096);model::Status st;
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","device":"openaps://phone","uploaderBattery":72,"isCharging":true,"openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z","IOB":1}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && st.uploaderBattery==72 && st.uploaderCharging && st.uploaderTime==now-30,"AAPS uploaderBattery and isCharging are read from the loop record");
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","uploader":{"battery":41},"openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z"}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && st.uploaderBattery==41 && !st.uploaderCharging,"Nested uploader.battery is accepted");
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","uploaderBattery":150,"openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z"}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && std::isnan(st.uploaderBattery) && !st.uploaderTime,"Out-of-range uploader battery is ignored");
+   model::CareAges care;
+   deserializeJson(ds,R"([{"eventType":"Site Change","created_at":"2026-10-25T10:00:00Z"},{"eventType":"Site Change","created_at":"2026-10-26T12:00:00Z"},
+     {"eventType":"Sensor Start","date":1792670400000},{"eventType":"Sensor Change","created_at":"2026-10-23T12:00:00Z"},
+     {"eventType":"Insulin Change","created_at":"2026-10-27T13:00:00Z"},{"eventType":"Insulin Change","created_at":"2026-10-26T00:00:00Z","isValid":false},
+     {"eventType":"Insulin Change","created_at":"2026-10-25T00:00:00Z"},{"eventType":"Note","created_at":"2026-10-27T11:00:00Z"}])");
+   check(model::careEvents(ds.as<JsonVariantConst>(),now,care) && care.cannula==now-86400 && care.sensor==now-4*86400 && care.insulin==now-2*86400-12*3600,
+     "Care ages use the latest valid event of each kind; future, deleted and other events are ignored");
+   char v[16];careage::format(now-17*3600-59,now,v,sizeof(v));bool f1=!strcmp(v,"17h");careage::format(now-(3*24+4)*3600,now,v,sizeof(v));bool f2=!strcmp(v,"3d 4h");
+   careage::format(0,now,v,sizeof(v));bool f3=!strcmp(v,"--");careage::format(now+60,now,v,sizeof(v));
+   check(f1&&f2&&f3&&!strcmp(v,"0h"),"Care age text: hours under two days, then days and hours");
+   check(careage::level(now-47*3600,now,careage::CANNULA)==careage::Level::Info && careage::level(now-48*3600,now,careage::CANNULA)==careage::Level::Warn &&
+     careage::level(now-72*3600,now,careage::INSULIN)==careage::Level::Urgent && careage::level(now-215*3600,now,careage::SENSOR)==careage::Level::Ok &&
+     careage::level(0,now,careage::SENSOR)==careage::Level::Unknown,"Care age warning levels");
   }
   Serial.printf("RESULT: %u passed, %u failed\n",passed,failed);
   return failed?1:0;

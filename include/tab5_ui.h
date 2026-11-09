@@ -5,6 +5,7 @@
 #include "clock_display.h"
 #include "smb_labels.h"
 #include "graph_time.h"
+#include "care_age.h"
 static_assert(smblabels::CAPACITY>=model::MAX_TREATMENTS,"Every cached SMB must fit the label layout");
 void saveDisplaySettings();
 bool applyUiSettings(bool force);
@@ -174,6 +175,32 @@ void drawSmbStrip(const graphtime::Buckets &b,int64_t start,int64_t end,int plot
   label((x0+x1)/2,plotBottom+26,unitsText(k.units),Type::Small,style::cyan,x1-x0-4,lgfx::textdatum_t::middle_center);
  }
 }
+bool uploaderFresh(const model::Status &s,int64_t now){return std::isfinite(s.uploaderBattery)&&model::fresh(s.uploaderTime,now,uiSettings.apsStale);}
+uint16_t careColor(careage::Level level){return level==careage::Level::Urgent?style::red:level==careage::Level::Warn?style::amber:level==careage::Level::Unknown?style::muted:style::ink;}
+// Loop card right column: AAPS phone battery, then cannula / sensor / insulin age.
+void drawLoopSide(const model::Status &s,const model::CareAges &care,int64_t now){
+ const int x=1134,right=1244;
+ canvas.drawFastVLine(1122,90,120,style::edge);
+ const bool fresh=uploaderFresh(s,now);const int pct=fresh?int(std::lround(s.uploaderBattery)):-1;
+ const uint16_t c=!fresh?style::muted:s.uploaderCharging?style::cyan:pct<=15?style::red:pct<=30?style::amber:style::green;
+ canvas.drawRoundRect(x,86,14,24,3,c);canvas.drawFastHLine(x+4,88,6,c);
+ if(pct>=0){int h=(pct*16+50)/100;if(h>0)canvas.fillRect(x+3,107-h,8,h,c);}
+ label(x+22,98,pct>=0?String(pct)+"%":String("--"),Type::Small,c,56,lgfx::textdatum_t::middle_left);
+ if(fresh&&s.uploaderCharging){canvas.fillTriangle(right-4,86,right-11,99,right-5,99,c);canvas.fillTriangle(right-6,96,right,96,right-8,110,c);}
+ struct Row{const char *name;int64_t t;careage::Limits limits;};
+ const Row rows[]={{"CAGE",care.cannula,careage::CANNULA},{"SAGE",care.sensor,careage::SENSOR},{"IAGE",care.insulin,careage::INSULIN}};
+ for(size_t i=0;i<3;++i){
+  const int y=124+int(i)*28;char value[16];careage::format(rows[i].t,now,value,sizeof(value));
+  label(x,y,rows[i].name,Type::Small,style::muted);
+  label(right,y,value,Type::Small,careColor(careage::level(rows[i].t,now,rows[i].limits)),70,lgfx::textdatum_t::top_right);
+ }
+}
+String loopSideDetail(){
+ const int64_t now=displayNow();const auto &s=ui->status;const auto &care=ui->care;char cage[16],sage[16],iage[16];
+ careage::format(care.cannula,now,cage,sizeof(cage));careage::format(care.sensor,now,sage,sizeof(sage));careage::format(care.insulin,now,iage,sizeof(iage));
+ String phone=uploaderFresh(s,now)?String(int(std::lround(s.uploaderBattery)))+"%"+(s.uploaderCharging?" charging":"")+" ("+age(s.uploaderTime,now)+" ago)":String("unavailable");
+ return String("Phone ")+phone+" / Cannula "+cage+" / Sensor "+sage+" / Insulin "+iage;
+}
 void draw() {
  beginFrame();const int64_t now=displayNow();const auto &h=ui->history;const auto &s=ui->status;
  bool fresh=h.count&&model::fresh(h.p[h.count-1].t,now,uiSettings.sgvStale),loopFresh=model::fresh(s.loopTime,now,uiSettings.apsStale);
@@ -196,9 +223,10 @@ void draw() {
  label(490,198,basal,Type::Small,style::muted,190);
  label(736,90,"COB",Type::Body,style::muted);label(736,130,metric(s.cob,0),Type::Metric,style::ink,160);label(906,153,"g",Type::Small,style::muted);
  label(736,198,String("Pump: ")+s.pump,Type::Small,style::muted,190);
- label(982,90,"LOOP",Type::Body,style::muted);label(982,128,loopFresh?"Recent":"Stale",Type::Status,loopFresh?style::green:style::amber,250);
- label(982,176,s.loopTime?String("Updated ")+age(s.loopTime,now)+" ago":"Waiting for loop data",Type::Small,style::muted,250);
- label(982,201,s.activity,Type::Small,style::muted,250);
+ label(982,90,"LOOP",Type::Body,style::muted);label(982,128,loopFresh?"Recent":"Stale",Type::Status,loopFresh?style::green:style::amber,136);
+ label(982,176,s.loopTime?String("Updated ")+age(s.loopTime,now)+" ago":"Waiting for loop data",Type::Small,style::muted,136);
+ label(982,201,s.activity,Type::Small,style::muted,136);
+ drawLoopSide(s,ui->care,now);
  panel(24,240,1232,426);label(44,258,"Glucose history",Type::Heading);label(260,264,String(graphHours.load())+" h / "+(historyOffset?"earlier":"live"),Type::Small,style::muted,220);
  for(int i=0;i<4;++i)button(tablayout::ranges[i],String(tabgraph::range(i))+"h",graphHours.load()==tabgraph::range(i));
  icon(tablayout::earlier,Icon::Left);icon(tablayout::later,Icon::Right);button(tablayout::live,historyOffset?"Return to live":"Live",!historyOffset);
@@ -356,6 +384,7 @@ void tabTouch(int x,int y) {
   else if(reconnect.contains(x,y)){reconnectRequested.store(true);xTaskNotifyGive(networkTask);}
   return;
  }
+ if(loopSide.contains(x,y)){notice(loopSideDetail());return;}
  if(battery.contains(x,y)){
   notice(batteryPercent<0?String("Battery reading unavailable / external input is not measured"):String("Battery ~")+String(batteryPercent)+"% / "+String(batteryMillivolts/1000.f,2)+" V / "+(batteryCharging?"Charging":batteryMilliamps < -10?"Discharging":"Idle")+" (voltage estimate)");return;
  }

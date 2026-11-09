@@ -20,6 +20,56 @@ Standalone PlatformIO firmware for a native **1280 × 720 landscape touchscreen*
 
 **Glucose scale:** the vertical scale fits each view: visible readings plus any forecast lines being drawn, padded by 10% (at least 10 mg/dL) and never narrower than 60 mg/dL. Gridline spacing adapts to the span (mg/dL or mmol/L steps). The target band is drawn wherever it intersects the scale. Time-axis ticks fall on round local hours (15 min / 1 h / 2 h / 3 h / 6 h for 1/3/6/12/24 h).
 
+**Loop card side column:** the right side of the Loop card shows the AAPS phone (uploader) battery and CAGE / SAGE / IAGE. The phone battery comes from `uploaderBattery` / `isCharging` (or `uploader.battery`) on the selected loop devicestatus, colored green / amber (30% or less) / red (15% or less), cyan with a bolt while charging, and `--` once the loop record is older than the AAPS freshness setting. Ages come from the latest `Site Change`, `Sensor Start` or `Sensor Change`, and `Insulin Change` treatments in the last 30 days (one small v3 request with `eventType$in`), shown as hours under two days and then days + hours. They are refreshed with treatments at most every 10 minutes, or one minute after a live treatment change; a failed request keeps the previous ages and never affects alarms. Colors: amber at the warn age, red at the urgent age. CAGE and IAGE use Nightscout's defaults (warn 48 h, urgent 72 h); SAGE is set for a 10-day sensor (warn 228 h, urgent 240 h) in `include/care_age.h`. Tap the column for the full detail.
+
+**Rotation:** tap **Settings > Rotation: 0 deg / 180 deg**. This flips the landscape dashboard and Settings together, keeping 1280x720 resolution. The choice is saved separately in the Tab5 preferences and restored at boot. M5Stack's native display rotation also supplies the transformed touch coordinates; no separate manual coordinate flip is applied.
+
+![Settings layout preview; illustrative settings](docs/settings-preview.png)
+
+**Clock format:** tap **Settings > Clock: 12 hour / 24 hour**. This changes both the centered clock and graph-axis labels, using AM/PM in 12-hour mode. It is saved in the Tab5 preference namespace separately from the Nightscout profile; existing devices default to 24-hour mode. RTC storage and NTP synchronization remain UTC in either display mode.
+
+
+A centered clock and date use the saved POSIX time zone, including its daylight-saving rules. The Tab5's built-in RTC restores system UTC at startup, and successful network time synchronization writes UTC back to it. This keeps the clock available during Wi-Fi outages while the device/RTC retains valid time. If no valid clock is available, the header shows `--:--` and `Waiting for time` instead of an epoch date.
+
+The dashboard uses native-size FreeSans labels/headings and DejaVu numeric fonts rather than enlarging the small bitmap font. Glucose, IOB, COB and loop freshness have separate cards. The chart has a subdued target band, higher-contrast labels, smoother traces and a compact color-key legend. Connection/error information occupies a separate footer; full cached glucose history does not produce a warning when the selected view is covered.
+
+Top-right controls, left to right: **Wi-Fi signal**, **Sound**, **Forecast**, **Refresh**, **Day/Night**, **Settings**. The four Wi-Fi bars use the Core2 thresholds (-55/-67/-75 dBm), with a disconnected slash and a five-second RSSI sampling interval for the C6 radio. Tap the indicator for its signal reading. Tap the speaker to mute/unmute glucose and missing-update sounds; the crossed speaker means muted, and the saved state stays in sync with Settings. A highlighted forecast icon means the overlay is enabled; the sun/moon shows the current display mode. Buttons give brief text feedback after activation. Header icon targets are 52 × 52 pixels. Settings use larger text and grouped controls for alerts, units, brightness, Wi-Fi and the LAN portal. The arrow at the top right returns to the dashboard and cancels hotspot setup when active.
+
+![Dashboard layout preview; illustrative sample data](docs/ui-preview.png)
+
+## Hardware and build constraints
+
+Target: Tab5 C145/K145, ESP32-P4, 16 MB flash, 32 MB PSRAM, ESP32-C6 radio over SDIO. This is **not** an ESP32-S3 or a Core2 build. M5Unified/M5GFX initialize the MIPI-DSI display, touch, power expanders and speaker; this project does not substitute an SPI panel driver. A 1.84 MB RGB565 UI buffer lives in PSRAM, with an explicit startup failure if allocation fails.
+
+The pinned `tab5` environment uses the generic P4 evaluation-board definition for **engineering-sample / pre-rev-3.00 silicon**, as in M5Stack's Tab5 PlatformIO guidance. Radio SDIO pins are explicitly set to CLK12/CMD13/D0=11/D1=10/D2=9/D3=8/RESET15. The firmware is a P4 host application and expects a compatible factory ESP-Hosted image already on the C6. It does not flash the C6. Wi-Fi failure may require the vendor's host/slave version matching procedure; do not overwrite the radio with an unrelated C6 sketch.
+
+For P4 revision 3.x silicon, select `tab5-rev3` after checking the actual chip revision with esptool/vendor documentation. This changes the P4 SDK variant, not the screen type. Neither environment is hardware-certified here.
+
+Display revisions are a separate issue: original ILI9881C + GT911, replacement ST7123 (from October 14, 2025), and ST7121. Check the rear sticker. M5Stack documents reset handling fixes in M5Unified >=0.2.23 / M5GFX >=0.2.30; this project pins 0.2.28 / 0.2.35. Detection belongs to these libraries. On startup the project verifies a 1280 × 720 landscape surface; orientation, touch mapping, speaker and each panel revision still require physical validation.
+
+Pinned toolchain: pioarduino 55.03.37, Arduino ESP32 3.3.7, M5Unified 0.2.28, M5GFX 0.2.35, ArduinoJson 6.21.5. Use **Python 3.10–3.13**; this platform rejects Python 3.14. First build needs internet and several GB of free space.
+
+## Windows PowerShell helper
+
+Keep `Flash-Tab5.ps1` beside `platformio.ini` in the extracted project. Install Python 3.13 (including pip/venv) first. The script finds Python 3.10–3.13, creates `.build-tools/` locally, and installs pinned PlatformIO if needed. First build requires internet access.
+
+```powershell
+# Find your device's COM port:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Flash-Tab5.ps1 -ListPorts
+# First run creates config.h and stops for editing; rerun to build and flash:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Flash-Tab5.ps1 -Port COM5
+# Or configure Wi-Fi/Nightscout through the device portal after flashing:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Flash-Tab5.ps1 -UsePortal -Port COM5
+# Build without flashing:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Flash-Tab5.ps1 -BuildOnly
+# View diagnostics after upload (Ctrl+C to close):
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Flash-Tab5.ps1 -Monitor -Port COM5
+```
+
+Replace COM5 with your device's port, or omit `-Port` to let PlatformIO select one. `-PythonPath C:\Python313\python.exe` chooses an interpreter explicitly. `-Revision3` selects revision-3.x silicon; use it only when it matches the actual P4 chip. `-InitConfig` only creates configuration if absent; existing configuration is never overwritten. `-DryRun` prints the planned action without changing files or contacting a device. Upload occurs only after a successful build. The helper does not erase settings or flash the C6 radio. Build history and current validation results are recorded in VERIFICATION.md.
+
+**Local toolchain (this PC):** the pinned PlatformIO core lives in `.toolchain\pio`, running on the portable Python in `.toolchain\python` (Zig and ArduinoJson 6.21.5 for host tests are in `.toolchain\zig` and `.toolchain\arduinojson`). It is git-ignored. Double-click `.review-tools\RUN-build-flash.cmd` to build, upload and capture 60 s of serial output into `verification\`. If the project folder is moved again, rewrite the absolute paths in `.toolchain\pio\penv\pyvenv.cfg`, the penv `Scripts` launchers and `.toolchain\pio\idf-env.json`, or delete `.toolchain` and let PlatformIO reinstall.
+
 ## Build and provision
 
 ```sh

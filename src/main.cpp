@@ -23,6 +23,7 @@
 #include "body_buffer.h"
 #include "model.h"
 #include "treatments.h"
+#include "care_age.h"
 #include "display_settings.h"
 #include "alerts.h"
 #include "power_state.h"
@@ -48,7 +49,8 @@ struct Snapshot {
   model::History history;
   model::Status status;
   model::Treatments treatments;
-  char glucoseError[48]="Starting", statusError[48]="Starting", treatmentError[48]="Starting";
+  char glucoseError[48]="Starting", statusError[48]="Starting", treatmentError[48]="Starting", careError[48]="Starting";
+  model::CareAges care;
   int64_t clockAt=0, monoAt=0;
   uint32_t connectionEpoch=0;
 };
@@ -148,7 +150,7 @@ std::atomic<bool> networkBusy{false};
 uint32_t lastAppliedAt=0;
 bool haveApplied=false;
 std::atomic<bool> rtcSyncPending{false};
-enum class Resource {Glucose,Status,Treatments};
+enum class Resource {Glucose,Status,Treatments,Care};
 namespace layout {
 constexpr int PLOT_TOP=62;
 constexpr int LEGEND_Y=52, TIME_Y=184;
@@ -324,7 +326,7 @@ bool ensureJwt(char *error,size_t cap) {
 bool fetch(const String &path, Resource resource, Snapshot &s, int64_t now, char *error, size_t cap, bool allowRenew=true,model::Treatments *accumulator=nullptr,size_t *rowCount=nullptr) {
   if (netSettings.v3 && !ensureJwt(error,cap)) return false;
   const bool glucose=resource==Resource::Glucose;
-  const char *label=glucose?"SGV":resource==Resource::Status?"AAPS":"Treatments";
+  const char *label=glucose?"SGV":resource==Resource::Status?"AAPS":resource==Resource::Care?"Care":"Treatments";
   SecureClient tls(caBundleStart);
   HTTPClient http;
   http.setUserAgent("ESP32HTTPClient");
@@ -370,6 +372,7 @@ bool fetch(const String &path, Resource resource, Snapshot &s, int64_t now, char
       // Filter retains supported glucose forecasts and removes unused subtrees.
       DynamicJsonDocument items(4096),filter(6144);
       if (resource==Resource::Treatments) model::treatmentFilter(items);
+      else if (resource==Resource::Care) model::careFilter(items);
       else model::makeFilter(items,glucose);
       nsapi::responseFilter(filter,items,netSettings.v3);
       // PSRAM-backed and sized from the body (zero-copy strings), so a wider
@@ -382,6 +385,7 @@ bool fetch(const String &path, Resource resource, Snapshot &s, int64_t now, char
         JsonVariantConst collection=nsapi::collection(doc.as<JsonVariantConst>(),netSettings.v3);
         if (resource==Resource::Glucose) ok=model::entries(collection,now,s.history);
         else if (resource==Resource::Status) ok=model::statuses(collection,netSettings.device,now,s.status);
+        else if (resource==Resource::Care) ok=model::careEvents(collection,now,s.care);
         else {
           if(rowCount)*rowCount=collection.size();
           ok=model::treatments(collection,now-int64_t(pollHours)*3600,now,accumulator?*accumulator:s.treatments,accumulator!=nullptr,accumulator==nullptr);
@@ -466,7 +470,7 @@ void serviceLiveDuringHttp(){
 void worker(void*) {
   Snapshot &s=*workerSnapshot;
   NightscoutLive live(caBundleStart);liveClient=&live;
-  unsigned requested=nslive::All;uint32_t lastFull=0;
+  unsigned requested=nslive::All;uint32_t lastFull=0,lastCare=0;
   void *treatmentMemory=heap_caps_malloc(sizeof(model::Treatments),MALLOC_CAP_SPIRAM|MALLOC_CAP_8BIT);
   auto *staged=treatmentMemory?new(treatmentMemory) model::Treatments:nullptr;
   unsigned failures=0;
@@ -482,7 +486,7 @@ void worker(void*) {
     uint32_t revision,epoch;currentSettings(netSettings,revision,&epoch);
     if(s.connectionEpoch!=epoch) {
       live.close(true);liveOnline.store(false);requested=nslive::All;
-      resetSnapshot(s);s.connectionEpoch=epoch;jwt="";jwtExpiry=0;authCooling=false;
+      resetSnapshot(s);s.connectionEpoch=epoch;jwt="";jwtExpiry=0;authCooling=false;lastCare=0;
     }
     if(lastTimezone!=netSettings.timezone || lastNtp1!=netSettings.ntp1 || lastNtp2!=netSettings.ntp2) {
       configTzTime(netSettings.timezone,netSettings.ntp1,netSettings.ntp2);
@@ -517,7 +521,7 @@ void worker(void*) {
             String("/api/v1/entries/sgv.json?count=288&find[date][$gte]=")+since;
           bool a=!(requested&nslive::Entries)||fetch(entryPath,Resource::Glucose,s,now,s.glucoseError,sizeof(s.glucoseError));
           String path=netSettings.v3?
-            "/api/v3/devicestatus?sort$desc=date&limit=10&fields=date,created_at,device,openaps,pump,isValid,isDeleted":
+            "/api/v3/devicestatus?sort$desc=date&limit=10&fields=date,created_at,device,openaps,pump,uploaderBattery,isCharging,uploader,isValid,isDeleted":
             "/api/v1/devicestatus.json?count=2&find[openaps][$exists]=true";
           if (*netSettings.device) path+=String(netSettings.v3?"&device$eq=":"&find[device]=")+urlEncode(netSettings.device);
           bool b=!(requested&nslive::Status)||fetch(path,Resource::Status,s,time(nullptr),s.statusError,sizeof(s.statusError));
@@ -553,6 +557,25 @@ void worker(void*) {
             }
           } else if(netSettings.v3) {c=false;strlcpy(s.treatmentError,"Treatment PSRAM unavailable",sizeof(s.treatmentError));}
           else c=fetch(treatmentPath,Resource::Treatments,s,now,s.treatmentError,sizeof(s.treatmentError));
+          // Site/sensor/insulin change times: last 30 days, one small request. Refreshed with
+          // treatments at most every 10 min, or 60 s after a live treatment change.
+          // A failure keeps the previous ages and never affects alarms or retry backoff.
+          if((requested&nslive::Treatments) && (!lastCare || uint32_t(millis()-lastCare)>=(requested==nslive::All?600000u:60000u))) {
+            time_t careStart=time(nullptr)-30*86400;String carePath;
+            if(netSettings.v3) {
+              char careSince[32];snprintf(careSince,sizeof(careSince),"%lld",(long long)careStart*1000);
+              carePath=String("/api/v3/treatments?eventType$in=Site%20Change%7CSensor%20Start%7CSensor%20Change%7CInsulin%20Change&date$gte=")+careSince+
+                "&sort$desc=date&limit=100&fields=eventType,date,created_at,mills,isValid,isDeleted";
+            } else {
+              struct tm utc;gmtime_r(&careStart,&utc);char iso[32];strftime(iso,sizeof(iso),"%Y-%m-%dT%H:%M:%S.000Z",&utc);
+              carePath=String("/api/v1/treatments.json?count=100&find[created_at][$gte]=")+iso+
+                "&find[eventType][$in][]=Site%20Change&find[eventType][$in][]=Sensor%20Start&find[eventType][$in][]=Sensor%20Change&find[eventType][$in][]=Insulin%20Change";
+            }
+            if(fetch(carePath,Resource::Care,s,time(nullptr),s.careError,sizeof(s.careError))) {
+              lastCare=millis()|1;
+              Serial.printf("Care events found: cannula=%u sensor=%u insulin=%u\n",unsigned(s.care.cannula!=0),unsigned(s.care.sensor!=0),unsigned(s.care.insulin!=0));
+            } else Serial.printf("Care events: %s (previous ages kept)\n",s.careError);
+          }
           good=a&&b&&c;
         }
     }
