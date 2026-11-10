@@ -525,6 +525,7 @@ void worker(void*) {
             "/api/v1/devicestatus.json?count=2&find[openaps][$exists]=true";
           if (*netSettings.device) path+=String(netSettings.v3?"&device$eq=":"&find[device]=")+urlEncode(netSettings.device);
           bool b=!(requested&nslive::Status)||fetch(path,Resource::Status,s,time(nullptr),s.statusError,sizeof(s.statusError));
+          if((requested&nslive::Status)&&b)Serial.printf("Pump info present: reservoir=%u battery=%u\n",unsigned(std::isfinite(s.status.reservoir)||s.status.reservoirOverride[0]),unsigned(std::isfinite(s.status.pumpBattery)||std::isfinite(s.status.pumpVoltage)));
           String treatmentPath;
           if (netSettings.v3) {
             char current[32];snprintf(current,sizeof(current),"%lld",(long long)time(nullptr)*1000);

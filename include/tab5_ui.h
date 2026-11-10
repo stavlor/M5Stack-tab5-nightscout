@@ -6,6 +6,7 @@
 #include "smb_labels.h"
 #include "graph_time.h"
 #include "care_age.h"
+#include "pump_status.h"
 static_assert(smblabels::CAPACITY>=model::MAX_TREATMENTS,"Every cached SMB must fit the label layout");
 void saveDisplaySettings();
 bool applyUiSettings(bool force);
@@ -177,6 +178,30 @@ void drawSmbStrip(const graphtime::Buckets &b,int64_t start,int64_t end,int plot
 }
 bool uploaderFresh(const model::Status &s,int64_t now){return std::isfinite(s.uploaderBattery)&&model::fresh(s.uploaderTime,now,uiSettings.apsStale);}
 uint16_t careColor(careage::Level level){return level==careage::Level::Urgent?style::red:level==careage::Level::Warn?style::amber:level==careage::Level::Unknown?style::muted:style::ink;}
+uint16_t pumpColor(pumpstatus::Level level){return level==pumpstatus::Level::Urgent?style::red:level==pumpstatus::Level::Warn?style::amber:level==pumpstatus::Level::Unknown?style::muted:style::ink;}
+bool pumpInfoFresh(const model::Status &s,int64_t now){return model::fresh(s.pumpInfoTime,now,uiSettings.apsStale);}
+// IOB card, right-aligned on the "IOB" line: reservoir (cartridge icon) then pump battery.
+void drawPumpIndicators(const model::Status &s,int64_t now){
+ const bool fresh=pumpInfoFresh(s,now);const int cy=100;font(Type::Small);
+ char text[16];
+ pumpstatus::batteryText(fresh?s.pumpBattery:NAN,fresh?s.pumpVoltage:NAN,text,sizeof(text));
+ uint16_t c=fresh?pumpColor(pumpstatus::battery(s.pumpBattery,s.pumpVoltage)):style::muted;
+ int right=688,w=canvas.textWidth(text);label(right,cy,text,Type::Small,c,0,lgfx::textdatum_t::middle_right);
+ int x=right-w-25;canvas.drawRoundRect(x,cy-5,18,11,2,c);canvas.fillRect(x+18,cy-2,2,5,c);
+ if(fresh&&std::isfinite(s.pumpBattery)){int f=(int(std::lround(s.pumpBattery))*14+50)/100;if(f>0)canvas.fillRect(x+2,cy-3,f,7,c);}
+ pumpstatus::reservoirText(fresh?s.reservoir:NAN,fresh?s.reservoirOverride:"",text,sizeof(text));
+ c=fresh?pumpColor(*s.reservoirOverride?pumpstatus::Level::Ok:pumpstatus::reservoir(s.reservoir)):style::muted;
+ if(fresh&&*s.reservoirOverride&&std::isfinite(s.reservoir))c=pumpColor(pumpstatus::reservoir(s.reservoir));
+ right=x-12;w=canvas.textWidth(text);label(right,cy,text,Type::Small,c,0,lgfx::textdatum_t::middle_right);
+ // Cartridge: barrel with plunger rod and outlet.
+ x=right-w-26;canvas.drawRoundRect(x+4,cy-5,14,11,2,c);canvas.drawFastHLine(x,cy,4,c);canvas.drawFastVLine(x,cy-3,7,c);canvas.fillRect(x+18,cy-1,3,3,c);
+}
+String pumpInfoDetail(){
+ const int64_t now=displayNow();const auto &s=ui->status;
+ if(!pumpInfoFresh(s,now))return String("Pump reservoir and battery unavailable")+(s.pumpInfoTime?String(" (last ")+age(s.pumpInfoTime,now)+" ago)":String(""));
+ char r[16],b[16];pumpstatus::reservoirText(s.reservoir,s.reservoirOverride,r,sizeof(r));pumpstatus::batteryText(s.pumpBattery,s.pumpVoltage,b,sizeof(b));
+ return String("Pump reservoir ")+r+" / pump battery "+b+" ("+age(s.pumpInfoTime,now)+" ago)";
+}
 // Loop card right column: AAPS phone battery, then cannula / sensor / insulin age.
 void drawLoopSide(const model::Status &s,const model::CareAges &care,int64_t now){
  const int x=1134,right=1244;
@@ -218,7 +243,7 @@ void draw() {
  label(44,198,h.count?String(fresh?"Updated ":"Last reading ")+age(h.p[h.count-1].t,now)+" ago":"Waiting for data",Type::Small,style::muted,185);
  if(h.count>1){float delta=latest-h.p[h.count-2].sgv;label(245,198,String("Delta ")+(delta>0?"+":"")+glucose(delta),Type::Small,style::muted,190);}
  auto metric=[&](const model::Metric &m,unsigned digits){return model::fresh(m.t,now,uiSettings.apsStale)?amount(m.value,digits):String("--");};
- label(490,90,"IOB",Type::Body,style::muted);label(490,130,metric(s.iob,2),Type::Metric,style::ink,160);label(660,153,"U",Type::Small,style::muted);
+ label(490,90,"IOB",Type::Body,style::muted);drawPumpIndicators(s,now);label(490,130,metric(s.iob,2),Type::Metric,style::ink,160);label(660,153,"U",Type::Small,style::muted);
  String basal=model::fresh(s.basal.t,now,uiSettings.apsStale)&&(!s.tempUntil||now<=s.tempUntil)?"Basal "+amount(s.basal.value)+" U/h":"Basal unavailable";
  label(490,198,basal,Type::Small,style::muted,190);
  label(736,90,"COB",Type::Body,style::muted);label(736,130,metric(s.cob,0),Type::Metric,style::ink,160);label(906,153,"g",Type::Small,style::muted);
@@ -385,6 +410,7 @@ void tabTouch(int x,int y) {
   return;
  }
  if(loopSide.contains(x,y)){notice(loopSideDetail());return;}
+ if(pumpInfo.contains(x,y)){notice(pumpInfoDetail());return;}
  if(battery.contains(x,y)){
   notice(batteryPercent<0?String("Battery reading unavailable / external input is not measured"):String("Battery ~")+String(batteryPercent)+"% / "+String(batteryMillivolts/1000.f,2)+" V / "+(batteryCharging?"Charging":batteryMilliamps < -10?"Discharging":"Idle")+" (voltage estimate)");return;
  }

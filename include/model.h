@@ -20,6 +20,8 @@ inline void makeFilter(DynamicJsonDocument &filter, bool glucose) {
   f["openaps"]["iob"]=true;
   f["uploaderBattery"]=true;f["isCharging"]=true;f["uploader"]["battery"]=true;
   f["pump"]["status"]=true;
+  f["pump"]["reservoir"]=true;f["pump"]["reservoir_display_override"]=true;
+  f["pump"]["battery"]["percent"]=true;f["pump"]["battery"]["voltage"]=true;
   JsonObject e=f["pump"]["extended"].to<JsonObject>();
   for (const char *k : {"TempBasalRemaining","TempBasalAbsoluteRate","BaseBasalRate"}) e[k]=true;
 }
@@ -41,6 +43,8 @@ struct Status {
   char activity[24] = "Unknown", pump[40] = "Unknown", basalKind[12] = "Unknown";
   // Uploader (AAPS phone) battery from the selected loop devicestatus.
   float uploaderBattery = NAN; bool uploaderCharging = false; int64_t uploaderTime = 0;
+  // Pump reservoir (U) and battery (percent, or volts for AAA pumps) from the same record.
+  float reservoir = NAN, pumpBattery = NAN, pumpVoltage = NAN; char reservoirOverride[12] = {}; int64_t pumpInfoTime = 0;
 };
 inline bool number(JsonVariantConst v, float &n) {
   if (v.is<bool>() || !(v.is<float>() || v.is<long>() || v.is<double>())) return false;
@@ -174,6 +178,16 @@ inline bool statuses(JsonVariantConst root, const char *device, int64_t now, Sta
   JsonVariantConst pump=selected["pump"], ext=pump["extended"];
   // Pump's own status timestamp, NOT upload time, gates basal freshness.
   s.pumpTime=timestamp(pump["status"]["timestamp"]);
+  {
+    float value;bool any=false;
+    if (number(pump["reservoir"],value) && value>=0 && value<=1000) {s.reservoir=value;any=true;}
+    const char *display=pump["reservoir_display_override"] | "";
+    if (*display && strlen(display)<sizeof(s.reservoirOverride)) {strlcpy(s.reservoirOverride,display,sizeof(s.reservoirOverride));any=true;}
+    if (number(pump["battery"]["percent"],value) && value>=0 && value<=100) {s.pumpBattery=value;any=true;}
+    else if (number(pump["battery"]["voltage"],value) && value>0 && value<10) {s.pumpVoltage=value;any=true;}
+    // Pump status time when the pump reports one, otherwise the upload time.
+    if (any) s.pumpInfoTime=validTime(s.pumpTime,now)?s.pumpTime:newest;
+  }
   if (validTime(s.pumpTime,now)) {
     strlcpy(s.pump,pump["status"]["status"] | "Unknown",sizeof(s.pump));
     float rem;

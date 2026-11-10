@@ -239,3 +239,16 @@ New `include/care_age.h` (care-event parsing, age text, warning levels). `model:
 README repair: the all-views README edit had matched an LF paragraph break in a CRLF file and removed the Rotation, Clock format, display/controls, Hardware, Windows helper and local-toolchain sections. They were restored from `.backup-2026-11-09/all-views-scale/README.md` with the current SMB, glucose-scale and Loop card text.
 
 Evidence: `verification/tab5-loop-side-upload.txt`, `verification/tab5-loop-side-serial.txt`.
+
+
+## IOB card: pump reservoir + pump battery — 2026-11-10
+
+New `include/pump_status.h` (text and Nightscout-default warning levels). `model::statuses` reads `pump.reservoir`, `pump.reservoir_display_override`, `pump.battery.percent` / `.voltage` (field names confirmed in AndroidAPS `NSDeviceStatus.kt`; thresholds from cgm-remote-monitor `lib/plugins/pump.js`).
+
+| Check | Result |
+|---|---|
+| Host C++ fixtures | **223 passed, 0 failed** (5 new: reservoir/percent with pump status time, override/voltage with upload-time fallback, out-of-range values, text, warning levels) |
+| Firmware build / upload COM4 | **Passed**, hash verified |
+| Serial run | `Pump info present: reservoir=1 battery=1` from the Tandem/AAPS devicestatus; care ages and live updates normal; no resets or panics |
+
+Evidence: `verification/tab5-pump-iob-upload.txt`, `verification/tab5-pump-iob-serial.txt`.

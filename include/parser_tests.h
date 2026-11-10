@@ -17,6 +17,7 @@
 #include "graph_scale.h"
 #include "graph_time.h"
 #include "care_age.h"
+#include "pump_status.h"
 #include "quick_settings.h"
 #include "runtime_settings.h"
 #include "tls_diagnostics.h"
@@ -569,6 +570,22 @@ inline int runParserTests() {
    check(careage::level(now-47*3600,now,careage::CANNULA)==careage::Level::Info && careage::level(now-48*3600,now,careage::CANNULA)==careage::Level::Warn &&
      careage::level(now-72*3600,now,careage::INSULIN)==careage::Level::Urgent && careage::level(now-215*3600,now,careage::SENSOR)==careage::Level::Ok &&
      careage::level(0,now,careage::SENSOR)==careage::Level::Unknown,"Care age warning levels");
+  }
+  {
+   DynamicJsonDocument ds(4096);model::Status st;
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z"}},"pump":{"reservoir":123.4,"battery":{"percent":80},"status":{"status":"normal","timestamp":"2026-10-27T11:58:00Z"}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && std::fabs(st.reservoir-123.4f)<1e-3f && st.pumpBattery==80 && std::isnan(st.pumpVoltage) && st.pumpInfoTime==now-120,"Pump reservoir and battery percent use the pump status time");
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z"}},"pump":{"reservoir_display_override":"50+","battery":{"voltage":1.42}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && !strcmp(st.reservoirOverride,"50+") && std::isnan(st.reservoir) && std::isnan(st.pumpBattery) && std::fabs(st.pumpVoltage-1.42f)<1e-4f && st.pumpInfoTime==now-30,
+     "Reservoir override and battery voltage fall back to the upload time");
+   deserializeJson(ds,R"([{"created_at":"2026-10-27T11:59:30Z","openaps":{"suggested":{"timestamp":"2026-10-27T11:59:00Z"}},"pump":{"reservoir":-3,"battery":{"percent":140}}}])");
+   check(model::statuses(ds.as<JsonVariantConst>(),"",now,st) && std::isnan(st.reservoir) && std::isnan(st.pumpBattery) && !st.pumpInfoTime,"Out-of-range pump values are ignored");
+   char t1[16],t2[16],t3[16],t4[16],t5[16];
+   pumpstatus::reservoirText(123.4f,"",t1,16);pumpstatus::reservoirText(7.46f,nullptr,t2,16);pumpstatus::reservoirText(NAN,"50+",t3,16);pumpstatus::reservoirText(NAN,"",t4,16);pumpstatus::batteryText(NAN,1.418f,t5,16);
+   check(!strcmp(t1,"123U")&&!strcmp(t2,"7.5U")&&!strcmp(t3,"50+U")&&!strcmp(t4,"--")&&!strcmp(t5,"1.42V"),"Reservoir and battery text");
+   check(pumpstatus::reservoir(10)==pumpstatus::Level::Ok && pumpstatus::reservoir(9.9f)==pumpstatus::Level::Warn && pumpstatus::reservoir(4.9f)==pumpstatus::Level::Urgent &&
+     pumpstatus::battery(30,NAN)==pumpstatus::Level::Ok && pumpstatus::battery(29,NAN)==pumpstatus::Level::Warn && pumpstatus::battery(19,NAN)==pumpstatus::Level::Urgent &&
+     pumpstatus::battery(NAN,1.33f)==pumpstatus::Level::Warn && pumpstatus::battery(NAN,NAN)==pumpstatus::Level::Unknown,"Pump warning levels match Nightscout defaults");
   }
   Serial.printf("RESULT: %u passed, %u failed\n",passed,failed);
   return failed?1:0;
